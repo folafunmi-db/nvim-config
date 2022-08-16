@@ -1,0 +1,23 @@
+{
+  "suggest.noselect": false,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "typescript.tsx",
+    "graphql",
+    "scss",
+    "sass",
+    "go",
+    "css",
+    "rust"
+  ],
+  "go.goplsOptions": {
+    "completeUnimported": true
+  }
+}
