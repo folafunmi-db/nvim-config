@@ -36,7 +36,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'marko-cerovac/material.nvim'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'junnplus/lsp-setup.nvim'
 Plug 'neovim/nvim-lspconfig'
@@ -86,42 +86,26 @@ if (has("nvim"))
 	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
-lua << EOF
-	require('material').setup({
-		contrast = {
-			sidebars = true, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
-			floating_windows = true, -- Enable contrast for floating windows
-			line_numbers = true, -- Enable contrast background for line numbers
-			sign_column = true, -- Enable contrast background for the sign column
-			cursor_line = false, -- Enable darker background for the cursor line
-			non_current_windows = false, -- Enable darker background for non-current windows
-			popup_menu = true, -- Enable lighter background for the popup menu
-		},
-
-		italics = {
-			comments = true, -- Enable italic comments
-			keywords = true, -- Enable italic keywords
-			functions = true, -- Enable italic functions
-			strings = true, -- Enable italic strings
-			variables = true -- Enable italic variables
-		},
-
-		high_visibility = {
-			lighter = false, -- Enable higher contrast text for lighter style
-			darker = false -- enable higher contrast text for darker style
-		},
-  })
-EOF
+" Fix italics in Vim
+if !has('nvim')
+  let &t_ZH="\e[3m"
+  let &t_ZR="\e[23m"
+endif
 
 " material theme config
-" let g:material_style = "palenight"
-" colorscheme material
+let g:material_theme_style = "ocean-community"
+let g:material_terminal_italics = 1
+let g:airline_theme = 'material'
+colorscheme material
 
 " shades of purple config
-syntax enable
-colorscheme shades_of_purple
-let g:shades_of_purple_airline = 1
-let g:airline_theme='shades_of_purple'
+" syntax enable
+" colorscheme shades_of_purple
+" let g:shades_of_purple_airline = 1
+" let g:airline_theme='shades_of_purple'
+
+" make bg transparent
+" autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 
 let g:rustfmt_autosave = 1
 
@@ -296,6 +280,7 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " Keybinding for ThePrimeagen's harpoon
 nnoremap <c-a> :lua require("harpoon.mark").add_file()<CR>
 nnoremap <c-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
+nnoremap <c-s-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
 nnoremap <c-s-o> :lua require("harpoon.ui").nav_next()<CR>
 nnoremap <c-s-i> :lua require("harpoon.ui").nav_prev()<CR>
 
