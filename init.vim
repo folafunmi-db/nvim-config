@@ -36,6 +36,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'junnplus/lsp-setup.nvim'
@@ -93,16 +94,18 @@ if !has('nvim')
 endif
 
 " material theme config
-let g:material_theme_style = "ocean-community"
-let g:material_terminal_italics = 1
-let g:airline_theme = 'material'
-colorscheme material
+" let g:material_theme_style = "default-community"
+" let g:material_terminal_italics = 1
+" let g:airline_theme = 'material'
+" colorscheme material
 
 " shades of purple config
-" syntax enable
+syntax enable
 " colorscheme shades_of_purple
 " let g:shades_of_purple_airline = 1
 " let g:airline_theme='shades_of_purple'
+
+colorscheme tokyonight-storm
 
 " make bg transparent
 " autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
