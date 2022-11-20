@@ -34,6 +34,8 @@
 
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'wuelnerdotexe/vim-astro'
+Plug 'https://github.com/xiyaowong/nvim-transparent'
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -99,16 +101,21 @@ endif
 " let g:airline_theme = 'material'
 " colorscheme material
 
-" shades of purple config
-syntax enable
+" shades of purple theme config
+" syntax enable
 " colorscheme shades_of_purple
 " let g:shades_of_purple_airline = 1
 " let g:airline_theme='shades_of_purple'
 
+" tokyonight theme config
 colorscheme tokyonight-storm
 
-" make bg transparent
-" autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+" disable bg transparent
+" let g:transparent_enabled = v:false
+
+" vim-astro config
+let g:astro_typescript = 'enable'
+" let g:astro_stylus = 'enable'
 
 let g:rustfmt_autosave = 1
 
@@ -160,6 +167,10 @@ au VimEnter *  NERDTree
 " Focus on opened view after starting (instead of NERDTree)
 "autocmd VimEnter * call SyncTree()
 au VimEnter * :wincmd w
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+" autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    " \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " Open NERDTree on the right
 let g:NERDTreeWinPos = "right"
@@ -295,6 +306,23 @@ nnoremap <c-p> <cmd>lua require('telescope.builtin').find_files({ find_command =
 nnoremap <c-f> <cmd>lua require('telescope.builtin').live_grep({ disable_coordinates=true })<cr>
 
 lua << EOF
+  -- nvim-transparent config
+		require("transparent").setup({
+		enable = true, -- boolean: enable transparent
+		extra_groups = { -- table/string: additional groups that should be cleared
+			-- In particular, when you set it to 'all', that means all available groups
+
+			-- example of akinsho/nvim-bufferline.lua
+			"BufferLineTabClose",
+			"BufferlineBufferSelected",
+			"BufferLineFill",
+			"BufferLineBackground",
+			"BufferLineSeparator",
+			"BufferLineIndicatorSelected",
+		},
+		exclude = {}, -- table: groups you don't want to clear
+	})
+
 	-- telescope config
 	require('telescope').setup{
 		defaults = {
