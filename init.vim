@@ -253,12 +253,12 @@ let g:move_key_modifier = 'S'
 let g:move_key_modifier_visualmode = 'S'
 
 " esc in insert & visual mode
-" :inoremap jk  <esc>
-" :vnoremap jk <esc>
+:inoremap <C-[>  <esc>
+:vnoremap <C-[> <esc>
 " :set timeoutlen=500
 
 " esc in command mode
-" :cnoremap jk <C-C>
+:cnoremap <C-[> <C-C>
 " Note: In command mode mappings to esc run the command for some odd
 " historical vi compatibility reason. We use the alternate method of
 " existing which is Ctrl-C
