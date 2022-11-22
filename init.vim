@@ -306,6 +306,8 @@ nnoremap <c-p> <cmd>lua require('telescope.builtin').find_files({ find_command =
 nnoremap <c-f> <cmd>lua require('telescope.builtin').live_grep({ disable_coordinates=true })<cr>
 
 lua << EOF
+	-- astro lspconfig
+		require'lspconfig'.astro.setup{}
   -- nvim-transparent config
 		require("transparent").setup({
 		enable = true, -- boolean: enable transparent
