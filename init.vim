@@ -303,7 +303,7 @@ nnoremap <c-s-i> :lua require("harpoon.ui").nav_prev()<CR>
 
 " Telescope config vim
 nnoremap <c-p> <cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
-nnoremap <c-f> <cmd>lua require('telescope.builtin').live_grep({ disable_coordinates=true })<cr>
+nnoremap <c-o> <cmd>lua require('telescope.builtin').live_grep({ disable_coordinates=true })<cr>
 
 lua << EOF
 	-- astro lspconfig
