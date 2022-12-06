@@ -115,7 +115,7 @@ colorscheme tokyonight-storm
 
 " vim-astro config
 let g:astro_typescript = 'enable'
-" let g:astro_stylus = 'enable'
+let g:astro_stylus = 'enable'
 
 let g:rustfmt_autosave = 1
 
