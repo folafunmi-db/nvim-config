@@ -252,6 +252,9 @@ nmap <silent> <c-l> :wincmd l<CR>
 let g:move_key_modifier = 'S'
 let g:move_key_modifier_visualmode = 'S'
 
+" quit visual mutlti
+nnoremap <silent> <C-c> <cmd>:VMClear<CR>
+
 " esc in insert & visual mode
 :inoremap <C-[> <Esc>
 :inoremap <C-c> <Esc>
