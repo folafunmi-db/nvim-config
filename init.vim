@@ -311,6 +311,9 @@ nnoremap <c-s-i> :lua require("harpoon.ui").nav_prev()<CR>
 nnoremap <c-p> <cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
 nnoremap <c-o> <cmd>lua require('telescope.builtin').live_grep({ disable_coordinates=true })<cr>
 
+" make the line numbers white
+:highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
+
 lua << EOF
 	-- astro lspconfig
 		require'lspconfig'.astro.setup{}
