@@ -86,13 +86,13 @@ if (has("termguicolors"))
 endif
 
 if (has("nvim"))
-	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+	let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 endif
 
 " Fix italics in Vim
 if !has('nvim')
-  let &t_ZH="\e[3m"
-  let &t_ZR="\e[23m"
+  let &t_ZH = "\e[3m"
+  let &t_ZR = "\e[23m"
 endif
 
 " material theme config
@@ -294,8 +294,8 @@ function! s:show_documentation()
 endfunction
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format-selected)
 
 " Keybinding for ThePrimeagen's harpoon
 nnoremap <c-a> :lua require("harpoon.mark").add_file()<CR>
