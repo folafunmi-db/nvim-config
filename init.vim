@@ -452,7 +452,9 @@ lua << EOF
 			enable = true
 		}
 	}
+EOF
 
+lua << EOF
 	local ToggleTerm = require("toggleterm")
 
 	ToggleTerm.setup({
@@ -483,11 +485,11 @@ lua << EOF
 	vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 EOF
 
-" augroup mygroup
-"   autocmd!
-"   " Setup formatexpr specified filetype(s).
-"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-"   " Update signature help on jump placeholder.
-"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-" augroup end
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 
