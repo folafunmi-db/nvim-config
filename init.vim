@@ -72,7 +72,7 @@ Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
 Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'jparise/vim-graphql'
 Plug 'dyng/ctrlsf.vim'
@@ -298,11 +298,11 @@ xmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>f <Plug>(coc-format-selected)
 
 " Keybinding for ThePrimeagen's harpoon
-nnoremap <c-a> :lua require("harpoon.mark").add_file()<CR>
-nnoremap <c-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
-nnoremap <c-s-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
-nnoremap <c-s-o> :lua require("harpoon.ui").nav_next()<CR>
-nnoremap <c-s-i> :lua require("harpoon.ui").nav_prev()<CR>
+" nnoremap <c-a> :lua require("harpoon.mark").add_file()<CR>
+" nnoremap <c-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
+" nnoremap <c-s-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
+" nnoremap <c-s-o> :lua require("harpoon.ui").nav_next()<CR>
+" nnoremap <c-s-i> :lua require("harpoon.ui").nav_prev()<CR>
 
 " Toogle term config for lazygit 
 " nnoremap <c-g> :lua _LAZYGIT_TOGGLE()<CR>
@@ -435,9 +435,7 @@ lua << EOF
 	})
 
 	-- local ts_conds = require('nvim-autopairs.ts-conds')
-EOF
 
-lua << EOF
 	-- tree sitter plugin
 	require'nvim-treesitter.configs'.setup {
 		autotag = {
@@ -454,9 +452,7 @@ lua << EOF
 			enable = true
 		}
 	}
-EOF
 
-lua << EOF
 	local ToggleTerm = require("toggleterm")
 
 	ToggleTerm.setup({
@@ -485,14 +481,13 @@ lua << EOF
 
 	-- if you only want these mappings for toggle term use term://*toggleterm#* instead
 	vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
-
 EOF
 
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
+" augroup mygroup
+"   autocmd!
+"   " Setup formatexpr specified filetype(s).
+"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+"   " Update signature help on jump placeholder.
+"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+" augroup end
 
