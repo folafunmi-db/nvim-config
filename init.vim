@@ -78,6 +78,9 @@ Plug 'jparise/vim-graphql'
 Plug 'dyng/ctrlsf.vim'
 Plug 'wakatime/vim-wakatime'
 Plug 'matze/vim-move'
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
 call plug#end()
 
@@ -130,6 +133,9 @@ let NERDTreeShowHidden=1
 
 " enable line numbers
 let NERDTreeShowLineNumbers=1
+
+" for vim-svelte to enable preprocessors
+let g:svelte_preprocessors = ['typescript', 'postcss', 'scss']
 
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
