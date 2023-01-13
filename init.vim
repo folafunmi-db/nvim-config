@@ -135,7 +135,12 @@ let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
 
 " for vim-svelte to enable preprocessors
-let g:svelte_preprocessors = ['typescript', 'postcss', 'scss']
+ let g:svelte_preprocessor_tags = [
+   \ { 'name': 'postcss', 'tag': 'style', 'as': 'scss' }
+	 \ { 'name': 'ts', 'tag': 'script', 'as': 'typescript' }
+  \ ]
+
+let g:svelte_preprocessors = ['ts', 'postcss', 'scss']
 
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
