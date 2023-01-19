@@ -136,7 +136,7 @@ let NERDTreeShowLineNumbers=1
 
 " for vim-svelte to enable preprocessors
  let g:svelte_preprocessor_tags = [
-   \ { 'name': 'postcss', 'tag': 'style', 'as': 'scss' }
+   \ { 'name': 'postcss', 'tag': 'style', 'as': 'scss' },
 	 \ { 'name': 'ts', 'tag': 'script', 'as': 'typescript' }
   \ ]
 
