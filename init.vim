@@ -80,6 +80,9 @@ Plug 'wakatime/vim-wakatime'
 Plug 'matze/vim-move'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'weilbith/nvim-code-action-menu'
+Plug 'kosayoda/nvim-lightbulb'
+Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
 call plug#end()
@@ -162,6 +165,11 @@ au BufEnter * if exists('b:winview') && !&diff | call winrestview(b:winview) | u
 " Prevent Tab on NERDTree (breaks everything otherwise)
 autocmd FileType nerdtree noremap <buffer> <Tab> <nop>
 
+" nvim lightbuld config
+autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()
+
+" nvim code actions
+nnoremap <silent> <C-i> <cmd>:CodeActionMenu<CR>
 
 " Restore cursor position
 au BufReadPost *
@@ -289,6 +297,7 @@ nnoremap <silent> <C-c> <cmd>:VMClear<CR>
 nmap <C-s-f> <Plug>CtrlSFPrompt
 vmap <C-s-f> <Plug>CtrlSFVwordPath
 
+
 " remap c-z to undo
 nnoremap <C-Z> u
 nnoremap <C-s-z> u
@@ -326,6 +335,8 @@ nnoremap <c-o> <cmd>lua require('telescope.builtin').live_grep({ disable_coordin
 :highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
 
 lua << EOF
+	-- nvim config
+	require('nvim-lightbulb').setup({autocmd = {enabled = true}})
 	-- astro lspconfig
 		require'lspconfig'.astro.setup{}
   -- nvim-transparent config
