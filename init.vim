@@ -367,18 +367,18 @@ lua << EOF
     require'completion'.on_attach(client)
 	end
 	-- rust_analyzer lspconfig
-		require('lspconfig')['rust_analyzer'].setup{
-			on_attach = on_attach,
-			flags = lsp_flags,
-			cmd = cmd,
+		--require('lspconfig')['rust_analyzer'].setup{
+			--on_attach = on_attach,
+			--flags = lsp_flags,
+			--cmd = cmd,
 			--cmd = {
 			--	"rustup", "run", "stable", "rust-analyzer",
 			--	  },
 			-- Server-specific settings...
-			settings = {
-				["rust-analyzer"] = {}
-			}
-		}
+			--settings = {
+				--["rust-analyzer"] = {}
+			--}
+		--}
 		-- nvim-transparent config
 			require("transparent").setup({
 			enable = true, -- boolean: enable transparent
