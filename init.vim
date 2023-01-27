@@ -53,7 +53,8 @@ Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-lua/plenary.nvim'
-Plug 'ThePrimeagen/harpoon'
+Plug 'mfussenegger/nvim-dap'
+" Plug 'ThePrimeagen/harpoon'
 Plug 'psliwka/vim-smoothie'
 Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'https://github.com/simeji/winresizer'
@@ -84,6 +85,9 @@ Plug 'weilbith/nvim-code-action-menu'
 Plug 'kosayoda/nvim-lightbulb'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'dense-analysis/ale'
+Plug 'rust-lang/rust.vim'
+Plug 'simrat39/rust-tools.nvim'
 
 call plug#end()
 
@@ -124,6 +128,8 @@ let g:astro_typescript = 'enable'
 let g:astro_stylus = 'enable'
 
 let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
 
 let g:nerdtree_sync_cursorline = 1
 let g:NERDTreeHighlightCursorline = 1
@@ -193,6 +199,9 @@ au VimEnter * :wincmd w
 
 " Open NERDTree on the right
 let g:NERDTreeWinPos = "right"
+
+"ale for rust
+let g:ale_linters = {'rust': ['analyzer']}
 
 " coc config
 let g:coc_global_extensions = [
@@ -335,26 +344,57 @@ nnoremap <c-o> <cmd>lua require('telescope.builtin').live_grep({ disable_coordin
 :highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
 
 lua << EOF
+	require("rust-tools").setup({
+		server = {
+			on_attach = function(_, bufnr)
+				-- Hover actions
+				vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+				-- Code action groups
+				vim.keymap.set("n", "<leader>i", rt.code_action_group.code_action_group, { buffer = bufnr })
+			end,
+		},
+	})
 	-- nvim config
 	require('nvim-lightbulb').setup({autocmd = {enabled = true}})
 	-- astro lspconfig
-		require'lspconfig'.astro.setup{}
-  -- nvim-transparent config
-		require("transparent").setup({
-		enable = true, -- boolean: enable transparent
-		extra_groups = { -- table/string: additional groups that should be cleared
-			-- In particular, when you set it to 'all', that means all available groups
+	require'lspconfig'.astro.setup{}
+	-- ts lspconfig
+	require('lspconfig')['tsserver'].setup{
+		on_attach = on_attach,
+		flags = lsp_flags,
+	}
+	local on_attach = function(client)
+    require'completion'.on_attach(client)
+	end
+	-- rust_analyzer lspconfig
+		require('lspconfig')['rust_analyzer'].setup{
+			on_attach = on_attach,
+			flags = lsp_flags,
+			cmd = cmd,
+			--cmd = {
+			--	"rustup", "run", "stable", "rust-analyzer",
+			--	  },
+			-- Server-specific settings...
+			settings = {
+				["rust-analyzer"] = {}
+			}
+		}
+		-- nvim-transparent config
+			require("transparent").setup({
+			enable = true, -- boolean: enable transparent
+			extra_groups = { -- table/string: additional groups that should be cleared
+				-- In particular, when you set it to 'all', that means all available groups
 
-			-- example of akinsho/nvim-bufferline.lua
-			"BufferLineTabClose",
-			"BufferlineBufferSelected",
-			"BufferLineFill",
-			"BufferLineBackground",
-			"BufferLineSeparator",
-			"BufferLineIndicatorSelected",
-		},
-		exclude = {}, -- table: groups you don't want to clear
-	})
+				-- example of akinsho/nvim-bufferline.lua
+				"BufferLineTabClose",
+				"BufferlineBufferSelected",
+				"BufferLineFill",
+				"BufferLineBackground",
+				"BufferLineSeparator",
+				"BufferLineIndicatorSelected",
+			},
+			exclude = {}, -- table: groups you don't want to clear
+		})
 
 	-- telescope config
 	require('telescope').setup{
