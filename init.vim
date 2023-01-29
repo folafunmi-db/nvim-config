@@ -366,7 +366,7 @@ lua << EOF
 	local on_attach = function(client)
     require'completion'.on_attach(client)
 	end
-	-- rust_analyzer lspconfig
+	-- hidden rust_analyzer lspconfig
 		--require('lspconfig')['rust_analyzer'].setup{
 			--on_attach = on_attach,
 			--flags = lsp_flags,
