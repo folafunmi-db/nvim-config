@@ -43,8 +43,8 @@ Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'junnplus/lsp-setup.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
+" Plug 'williamboman/mason.nvim'
+" Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'windwp/nvim-autopairs'
 Plug 'https://github.com/windwp/nvim-ts-autotag'
@@ -151,6 +151,10 @@ let NERDTreeShowLineNumbers=1
 
 let g:svelte_preprocessors = ['ts', 'postcss', 'scss']
 
+let g:LanguageClient_serverCommands = {
+\ 'rust': ['rust-analyzer'],
+\ }
+
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
 
@@ -170,9 +174,6 @@ au BufEnter * if exists('b:winview') && !&diff | call winrestview(b:winview) | u
 
 " Prevent Tab on NERDTree (breaks everything otherwise)
 autocmd FileType nerdtree noremap <buffer> <Tab> <nop>
-
-" nvim lightbuld config
-autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()
 
 " nvim code actions
 nnoremap <silent> <C-i> <cmd>:CodeActionMenu<CR>
@@ -350,35 +351,39 @@ lua << EOF
 				-- Hover actions
 				vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
 				-- Code action groups
-				vim.keymap.set("n", "<leader>i", rt.code_action_group.code_action_group, { buffer = bufnr })
+				vim.keymap.set("n", "<C-i>", rt.code_action_group.code_action_group, { buffer = bufnr })
 			end,
 		},
 	})
-	-- nvim config
+
+	-- nvim lightbulb config
 	require('nvim-lightbulb').setup({autocmd = {enabled = true}})
+
 	-- astro lspconfig
 	require'lspconfig'.astro.setup{}
+
 	-- ts lspconfig
-	require('lspconfig')['tsserver'].setup{
+	 require('lspconfig')['tsserver'].setup{
 		on_attach = on_attach,
 		flags = lsp_flags,
 	}
-	local on_attach = function(client)
-    require'completion'.on_attach(client)
-	end
-	-- hidden rust_analyzer lspconfig
-		--require('lspconfig')['rust_analyzer'].setup{
-			--on_attach = on_attach,
-			--flags = lsp_flags,
-			--cmd = cmd,
-			--cmd = {
-			--	"rustup", "run", "stable", "rust-analyzer",
-			--	  },
-			-- Server-specific settings...
-			--settings = {
-				--["rust-analyzer"] = {}
-			--}
-		--}
+
+	--local on_attach = function(client)
+  --  require'completion'.on_attach(client)
+	--end
+
+	 -- rust_analyzer lspconfig
+		require('lspconfig')['rust_analyzer'].setup{
+			on_attach = on_attach,
+			flags = lsp_flags,
+			cmd = {
+				"rustup", "run", "stable", "rust-analyzer",
+				  },
+		--	settings = {
+		--		["rust-analyzer"] = {}
+		--	}
+		}
+
 		-- nvim-transparent config
 			require("transparent").setup({
 			enable = true, -- boolean: enable transparent
@@ -434,6 +439,7 @@ lua << EOF
 	}
 
 	require('telescope').load_extension('fzf')
+
 	require("telescope").load_extension("live_grep_args")
 
 	-- webdev icons config
