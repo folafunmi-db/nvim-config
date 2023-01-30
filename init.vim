@@ -85,7 +85,7 @@ Plug 'weilbith/nvim-code-action-menu'
 Plug 'kosayoda/nvim-lightbulb'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
 
@@ -202,7 +202,7 @@ au VimEnter * :wincmd w
 let g:NERDTreeWinPos = "right"
 
 "ale for rust
-let g:ale_linters = {'rust': ['analyzer']}
+" let g:ale_linters = {'rust': ['analyzer'], 'typescript': ['eslint', 'tsserver', 'typecheck'] }
 
 " coc config
 let g:coc_global_extensions = [
