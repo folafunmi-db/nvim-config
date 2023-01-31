@@ -233,7 +233,7 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-:set completeopt-=preview " For No Previews
+" :set completeopt-=preview " For No Previews
 
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1):
@@ -253,13 +253,14 @@ endfunction
 
 " Use <c-space> to trigger completion.
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+  inoremap <silent><expr> <C-space> coc#refresh()
+  " inoremap <silent><expr> <c-space> coc#refresh()
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [gc<Plug>(coc-diagnostic-prev)
+nmap <silent> [g<Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
@@ -349,7 +350,7 @@ lua << EOF
 		server = {
 			on_attach = function(_, bufnr)
 				-- Hover actions
-				-- vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+				vim.keymap.set("n", "<leader>i", rt.hover_actions.hover_actions, { buffer = bufnr })
 				-- Code action groups
 				vim.keymap.set("n", "<C-i>", rt.code_action_group.code_action_group, { buffer = bufnr })
 			end,
