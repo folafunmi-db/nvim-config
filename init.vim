@@ -117,7 +117,7 @@ endif
 " let g:shades_of_purple_airline = 1
 " let g:airline_theme='shades_of_purple'
 
-" tokyonight theme config
+" tokyonight theme config - not in use now though
 colorscheme tokyonight-storm
 
 " disable bg transparent
