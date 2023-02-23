@@ -149,6 +149,7 @@ let NERDTreeShowLineNumbers=1
 	 \ { 'name': 'ts', 'tag': 'script', 'as': 'typescript' }
   \ ]
 
+" NOTE: check update this
 let g:svelte_preprocessors = ['ts', 'postcss', 'scss']
 
 let g:LanguageClient_serverCommands = {
