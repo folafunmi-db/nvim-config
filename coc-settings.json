@@ -23,5 +23,6 @@
     "completeUnimported": true
   },
   "svelte.enable-ts-plugin": true,
-  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh"
+  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
+  "elixirLS.dialyzerEnabled": false
 }
