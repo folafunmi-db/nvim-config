@@ -36,6 +36,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'wuelnerdotexe/vim-astro'
 Plug 'https://github.com/xiyaowong/nvim-transparent'
+Plug 'elixir-editors/vim-elixir'
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -116,6 +117,13 @@ endif
 " colorscheme shades_of_purple
 " let g:shades_of_purple_airline = 1
 " let g:airline_theme='shades_of_purple'
+
+" Enable syntax highlighting
+syntax on
+
+" Enables filetype detection, loads ftplugin, and loads indent
+" (Not necessary on nvim and may not be necessary on vim 8.2+)
+filetype plugin indent on
 
 " tokyonight theme config - not in use now though
 colorscheme tokyonight-storm
