@@ -123,7 +123,7 @@ syntax on
 
 " Enables filetype detection, loads ftplugin, and loads indent
 " (Not necessary on nvim and may not be necessary on vim 8.2+)
-filetype plugin indent on
+" filetype plugin indent on
 
 " tokyonight theme config - not in use now though
 colorscheme tokyonight-storm
