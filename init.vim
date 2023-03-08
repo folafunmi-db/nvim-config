@@ -7,7 +7,7 @@
 :set tabstop=2
 :set shiftwidth=2
 :set smarttab
-:set scrolloff=10
+:set scrolloff=999
 :set softtabstop=2
 :set mouse=a
 :set encoding=UTF-8
@@ -56,7 +56,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'mfussenegger/nvim-dap'
 " Plug 'ThePrimeagen/harpoon'
-Plug 'psliwka/vim-smoothie'
+" Plug 'psliwka/vim-smoothie'
 Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'https://github.com/simeji/winresizer'
 Plug 'https://github.com/tpope/vim-commentary'
@@ -86,7 +86,6 @@ Plug 'weilbith/nvim-code-action-menu'
 Plug 'kosayoda/nvim-lightbulb'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
-" Plug 'dense-analysis/ale'
 Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
 
