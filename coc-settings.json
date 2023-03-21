@@ -17,6 +17,7 @@
     "sass",
     "go",
     "css",
+    "markdown",
     "rust"
   ],
   "go.goplsOptions": {
@@ -24,5 +25,6 @@
   },
   "svelte.enable-ts-plugin": true,
   "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
-  "elixirLS.dialyzerEnabled": false
+  "elixirLS.dialyzerEnabled": false,
+  "html.format.indentInnerHtml": true
 }
