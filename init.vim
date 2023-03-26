@@ -18,6 +18,7 @@
 :set nofoldenable
 :set foldlevel=99
 :set background=dark
+:set colorcolumn=120
 
 " use globalstatus line
 " :set laststatus=3
