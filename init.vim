@@ -18,7 +18,7 @@
 :set nofoldenable
 :set foldlevel=99
 :set background=dark
-:set colorcolumn=120
+:set colorcolumn=100
 :set clipboard+=unnamedplus
 
 " use globalstatus line
