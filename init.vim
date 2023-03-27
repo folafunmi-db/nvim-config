@@ -55,10 +55,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'nvim-telescope/telescope-live-grep-args.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'mfussenegger/nvim-dap'
-Plug 'ThePrimeagen/harpoon'
+" Plug 'ThePrimeagen/harpoon'
 Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'https://github.com/simeji/winresizer'
 Plug 'https://github.com/tpope/vim-commentary'
@@ -334,18 +333,19 @@ xmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>f <Plug>(coc-format-selected)
 
 " Keybinding for ThePrimeagen's harpoon
-nnoremap <c-a> :lua require("harpoon.mark").add_file()<CR>
-nnoremap <c-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
-nnoremap <c-s-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
-nnoremap <c-s-o> :lua require("harpoon.ui").nav_next()<CR>
-nnoremap <c-s-i> :lua require("harpoon.ui").nav_prev()<CR>
+" nnoremap <c-a> :lua require("harpoon.mark").add_file()<CR>
+" nnoremap <c-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
+" nnoremap <c-s-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
+" nnoremap <c-s-o> :lua require("harpoon.ui").nav_next()<CR>
+" nnoremap <c-s-i> :lua require("harpoon.ui").nav_prev()<CR>
 
 " Toogle term config for lazygit 
 " nnoremap <c-g> :lua _LAZYGIT_TOGGLE()<CR>
 
 " Telescope config vim
 nnoremap <c-p> <cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
-nnoremap <c-o> <cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>
+nnoremap <c-o> <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <c-m> <cmd>lua require('telescope.builtin').buffers()<cr>
 
 " make the line numbers standout
 :highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
@@ -407,7 +407,6 @@ lua << EOF
 			exclude = {}, -- table: groups you don't want to clear
 		})
 
-	local actions = require("telescope-live-grep-args.actions")
 
 	-- telescope config
 	require('telescope').setup{
@@ -434,22 +433,10 @@ lua << EOF
 				case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
 																				 -- the default case_mode is "smart_case"
 			},
-			 live_grep_args = {
-				auto_quoting = true, -- enable/disable auto-quoting
-				mappings = {
-					 i = {
-						 ["<C-k>"] = actions.quote_prompt(),
-						 ["<C-l>g"] = actions.quote_prompt({ postfix = ' --iglob ' }),
-						 ["<C-l>t"] = actions.quote_prompt({ postfix = ' -t' }),
-					 }
-				}
-			 }
 		}
 	}
 
 	require('telescope').load_extension('fzf')
-
-	require("telescope").load_extension("live_grep_args")
 
 	-- webdev icons config
 	require'nvim-web-devicons'.setup {
