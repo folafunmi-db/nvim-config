@@ -55,6 +55,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope-live-grep-args.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'ThePrimeagen/harpoon'
@@ -268,7 +269,7 @@ else
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g<Plug>(coc-diagnostic-prev)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
@@ -303,14 +304,10 @@ nnoremap <silent> <C-c> <cmd>:VMClear<CR>
 " esc in command mode
 :cnoremap <C-c> <C-C>
 :cnoremap <C-[> <C-C>
+
 " Note: In command mode mappings to esc run the command for some odd
 " historical vi compatibility reason. We use the alternate method of
 " existing which is Ctrl-C
-
-" :inoremap <S-CR> <Esc>
-" :nnoremap <S-CR> <Esc>
-" :vnoremap <S-CR> <Esc>
-" :cnoremap <S-CR> <C-C>
 
 " For inner search
 nmap <C-s-f> <Plug>CtrlSFPrompt
@@ -348,7 +345,7 @@ nnoremap <c-s-i> :lua require("harpoon.ui").nav_prev()<CR>
 
 " Telescope config vim
 nnoremap <c-p> <cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
-nnoremap <c-o> <cmd>lua require('telescope.builtin').live_grep({ disable_coordinates=true })<cr>
+nnoremap <c-o> <cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>
 
 " make the line numbers standout
 :highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
@@ -358,9 +355,9 @@ lua << EOF
 		server = {
 			on_attach = function(_, bufnr)
 				-- Hover actions
-				vim.keymap.set("n", "<leader>i", rt.hover_actions.hover_actions, { buffer = bufnr })
+				 vim.keymap.set("n", "<leader>i", rt.hover_actions.hover_actions, { buffer = bufnr })
 				-- Code action groups
-				vim.keymap.set("n", "<c-i>", rt.code_action_group.code_action_group, { buffer = bufnr })
+				 vim.keymap.set("n", "<c-i>", rt.code_action_group.code_action_group, { buffer = bufnr })
 			end,
 		},
 	})
@@ -410,6 +407,8 @@ lua << EOF
 			exclude = {}, -- table: groups you don't want to clear
 		})
 
+	local actions = require("telescope-live-grep-args.actions")
+
 	-- telescope config
 	require('telescope').setup{
 		defaults = {
@@ -433,17 +432,18 @@ lua << EOF
 				override_generic_sorter = true,  -- override the generic sorter
 				override_file_sorter = true,     -- override the file sorter
 				case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+																				 -- the default case_mode is "smart_case"
 			},
-			live_grep_args = {
+			 live_grep_args = {
 				auto_quoting = true, -- enable/disable auto-quoting
 				mappings = {
-					i = {
-						["<C-k>"] = actions.quote_prompt(),
-						["<C-l>g"] = actions.quote_prompt({ postfix = ' --iglob ' }),
-						["<C-l>t"] = actions.quote_prompt({ postfix = ' -t' }),
-					}
+					 i = {
+						 ["<C-k>"] = actions.quote_prompt(),
+						 ["<C-l>g"] = actions.quote_prompt({ postfix = ' --iglob ' }),
+						 ["<C-l>t"] = actions.quote_prompt({ postfix = ' -t' }),
+					 }
 				}
-			}
+			 }
 		}
 	}
 
@@ -460,8 +460,8 @@ lua << EOF
 				 cterm_color = "65",
 				 name = "Zsh"
 			 } 
-		 };
-		 default = true;
+		 },
+		 default = true,
 	}
 
 	-- bufferline config
@@ -502,19 +502,19 @@ lua << EOF
 	local npairs = require("nvim-autopairs")
 
 	npairs.setup({
-			enable_check_bracket_line = false,
-			check_ts = true,
-			-- ts_config = {
-					-- lua = {'string'},-- it will not add a pair on that treesitter node
-					-- javascript = {'template_string'},
-					-- java = false,-- don't check treesitter on java
-			-- }
+		enable_check_bracket_line = false,
+		check_ts = true,
+		-- ts_config = {
+				-- lua = {'string'},-- it will not add a pair on that treesitter node
+				-- javascript = {'template_string'},
+				-- java = false,-- don't check treesitter on java
+		-- }
 	})
 
 	-- local ts_conds = require('nvim-autopairs.ts-conds')
 
 	-- tree sitter plugin
-	require'nvim-treesitter.configs'.setup {
+	require'nvim-treesitter.configs'.setup({
 		autotag = {
 			enable = true,
     },
@@ -526,9 +526,9 @@ lua << EOF
     	additional_vim_regex_highlighting = false,
   	},
 		context_commentstring = {
-			enable = true
+			enable = true,
 		}
-	}
+	})
 EOF
 
 lua << EOF
