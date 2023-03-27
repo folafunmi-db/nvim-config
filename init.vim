@@ -19,6 +19,7 @@
 :set foldlevel=99
 :set background=dark
 :set colorcolumn=120
+:set clipboard+=unnamedplus
 
 " use globalstatus line
 " :set laststatus=3
@@ -56,8 +57,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'mfussenegger/nvim-dap'
-" Plug 'ThePrimeagen/harpoon'
-" Plug 'psliwka/vim-smoothie'
+Plug 'ThePrimeagen/harpoon'
 Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'https://github.com/simeji/winresizer'
 Plug 'https://github.com/tpope/vim-commentary'
@@ -75,7 +75,6 @@ Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
 Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'jparise/vim-graphql'
 Plug 'dyng/ctrlsf.vim'
@@ -338,11 +337,11 @@ xmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>f <Plug>(coc-format-selected)
 
 " Keybinding for ThePrimeagen's harpoon
-" nnoremap <c-a> :lua require("harpoon.mark").add_file()<CR>
-" nnoremap <c-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
-" nnoremap <c-s-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
-" nnoremap <c-s-o> :lua require("harpoon.ui").nav_next()<CR>
-" nnoremap <c-s-i> :lua require("harpoon.ui").nav_prev()<CR>
+nnoremap <c-a> :lua require("harpoon.mark").add_file()<CR>
+nnoremap <c-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
+nnoremap <c-s-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
+nnoremap <c-s-o> :lua require("harpoon.ui").nav_next()<CR>
+nnoremap <c-s-i> :lua require("harpoon.ui").nav_prev()<CR>
 
 " Toogle term config for lazygit 
 " nnoremap <c-g> :lua _LAZYGIT_TOGGLE()<CR>
@@ -361,7 +360,7 @@ lua << EOF
 				-- Hover actions
 				vim.keymap.set("n", "<leader>i", rt.hover_actions.hover_actions, { buffer = bufnr })
 				-- Code action groups
-				vim.keymap.set("n", "<C-i>", rt.code_action_group.code_action_group, { buffer = bufnr })
+				vim.keymap.set("n", "<c-i>", rt.code_action_group.code_action_group, { buffer = bufnr })
 			end,
 		},
 	})
