@@ -49,7 +49,7 @@ Plug 'neovim/nvim-lspconfig'
 " Plug 'williamboman/mason.nvim'
 " Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'windwp/nvim-autopairs'
+" Plug 'windwp/nvim-autopairs'
 Plug 'https://github.com/windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
@@ -250,7 +250,7 @@ inoremap <silent><expr> <TAB>
 
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-inoremap <silent><expr> <cr> "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <cr> "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
@@ -316,7 +316,7 @@ vmap <C-s-f> <Plug>CtrlSFVwordPath
 " remap c-z to undo
 nnoremap <C-Z> u
 nnoremap <C-s-z> u
-			
+		
 " Use K to show documentation in preview window
 nnoremap <silent> gk :call <SID>show_documentation()<CR>
 
@@ -486,17 +486,17 @@ lua << EOF
 	}
 
 	-- autopairs config
-	local npairs = require("nvim-autopairs")
+	-- local npairs = require("nvim-autopairs")
 
-	npairs.setup({
-		enable_check_bracket_line = false,
-		check_ts = true,
+	-- npairs.setup({
+		-- enable_check_bracket_line = false,
+		-- check_ts = true,
 		-- ts_config = {
 				-- lua = {'string'},-- it will not add a pair on that treesitter node
 				-- javascript = {'template_string'},
 				-- java = false,-- don't check treesitter on java
 		-- }
-	})
+	-- })
 
 	-- local ts_conds = require('nvim-autopairs.ts-conds')
 
@@ -528,11 +528,11 @@ lua << EOF
 
 	local Terminal  = require('toggleterm.terminal').Terminal
 
-  --local lazygit = Terminal:new({ cmd = "lazygit", dir = "git_dir", hidden = true })
+  local lazygit = Terminal:new({ cmd = "lazygit", dir = "git_dir", hidden = true })
 
-	--function _LAZYGIT_TOGGLE()
-	--	lazygit:toggle()
-	--end
+	function _LAZYGIT_TOGGLE()
+		lazygit:toggle()
+	end
 
 	vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", {noremap = true, silent = true})
 
