@@ -345,7 +345,7 @@ nmap <leader>f <Plug>(coc-format-selected)
 
 " Telescope config vim
 nnoremap <c-p> <cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
-nnoremap <c-o> <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <c-o> <cmd>lua require('telescope.builtin').live_grep({ disable_coordinates = true })<cr>
 nnoremap <c-m> <cmd>lua require('telescope.builtin').buffers()<cr>
 
 " make the line numbers standout
@@ -411,21 +411,6 @@ lua << EOF
 
 	-- telescope config
 	require('telescope').setup{
-		defaults = {
-			vimgrep_arguments = {
-				'rg',
-				'--files',
-				'--hidden',
-				'--color=never',
-				'--no-heading',
-				'--with-filename',
-				'--line-number',
-				'--column',
-				'--smart-case',
-				'-u', -- thats the new thing
-				'!.git',
-			},
-		},
 		extensions = {
 			fzf = {
 				fuzzy = true,                    -- false will only do exact matching
