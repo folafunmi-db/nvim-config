@@ -54,6 +54,7 @@ Plug 'https://github.com/windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope-live-grep-args.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'mfussenegger/nvim-dap'
@@ -345,7 +346,8 @@ nmap <leader>f <Plug>(coc-format-selected)
 
 " Telescope config vim
 nnoremap <c-p> <cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
-nnoremap <c-o> <cmd>lua require('telescope.builtin').live_grep({ disable_coordinates = true })<cr>
+nnoremap <c-o> <cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>
+" nnoremap <c-o> <cmd>lua require('telescope.builtin').live_grep({ disable_coordinates = true })<cr>
 nnoremap <c-m> <cmd>lua require('telescope.builtin').buffers()<cr>
 
 " make the line numbers standout
@@ -408,6 +410,7 @@ lua << EOF
 			exclude = {}, -- table: groups you don't want to clear
 		})
 
+	local lga_actions = require("telescope-live-grep-args.actions")
 
 	-- telescope config
 	require('telescope').setup{
@@ -419,6 +422,19 @@ lua << EOF
 				case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
 																				 -- the default case_mode is "smart_case"
 			},
+			live_grep_args = {
+				auto_quoting = true, -- enable/disable auto-quoting
+				mappings = { -- extend mappings
+					i = {
+						["<C-k>"] = lga_actions.quote_prompt(),
+						["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+					},
+				},
+				-- ... also accepts theme settings, for example:
+				-- theme = "dropdown", -- use dropdown theme
+				-- theme = { }, -- use own theme spec
+				-- layout_config = { mirror=true }, -- mirror preview pane
+			}
 		}
 	}
 
