@@ -473,7 +473,7 @@ lua << EOF
 
 	-- preconfig for indent blankline
 	vim.opt.list = true
-	vim.opt.listchars:append "eol:↴"
+	-- vim.opt.listchars:append "eol:↴"
   vim.opt.listchars:append "space:⋅"
 
 	-- colorizer config
