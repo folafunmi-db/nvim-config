@@ -37,12 +37,11 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'wuelnerdotexe/vim-astro'
-Plug 'https://github.com/xiyaowong/nvim-transparent'
+" Plug 'https://github.com/xiyaowong/nvim-transparent'
 Plug 'elixir-editors/vim-elixir'
-Plug 'Rigellute/shades-of-purple.vim'
+" Plug 'Rigellute/shades-of-purple.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'junnplus/lsp-setup.nvim'
 Plug 'neovim/nvim-lspconfig'
@@ -89,7 +88,7 @@ Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
-Plug 'puremourning/vimspector'
+" Plug 'puremourning/vimspector'
 
 call plug#end()
 
@@ -106,12 +105,6 @@ if !has('nvim')
   let &t_ZH = "\e[3m"
   let &t_ZR = "\e[23m"
 endif
-
-" material theme config
-" let g:material_theme_style = "default-community"
-" let g:material_terminal_italics = 1
-" let g:airline_theme = 'material'
-" colorscheme material
 
 " shades of purple theme config
 " syntax enable
@@ -394,21 +387,19 @@ lua << EOF
 		}
 
 		-- nvim-transparent config
-			require("transparent").setup({
-			enable = true, -- boolean: enable transparent
-			extra_groups = { -- table/string: additional groups that should be cleared
-				-- In particular, when you set it to 'all', that means all available groups
+			-- require("transparent").setup({
+			-- extra_groups = { -- table/string: additional groups that should be cleared
+			-- 	-- In particular, when you set it to 'all', that means all available groups
 
-				-- example of akinsho/nvim-bufferline.lua
-				"BufferLineTabClose",
-				"BufferlineBufferSelected",
-				"BufferLineFill",
-				"BufferLineBackground",
-				"BufferLineSeparator",
-				"BufferLineIndicatorSelected",
-			},
-			exclude = {}, -- table: groups you don't want to clear
-		})
+			-- 	-- example of akinsho/nvim-bufferline.lua
+			-- 	"BufferLineTabClose",
+			-- 	"BufferlineBufferSelected",
+			-- 	"BufferLineFill",
+			-- 	"BufferLineBackground",
+			-- 	"BufferLineSeparator",
+			-- 	"BufferLineIndicatorSelected",
+			-- },
+		-- })
 
 	local lga_actions = require("telescope-live-grep-args.actions")
 
