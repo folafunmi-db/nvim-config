@@ -20,6 +20,7 @@
 :set background=dark
 :set colorcolumn=100
 :set clipboard+=unnamedplus
+:set updatetime=300
 
 " use globalstatus line
 " :set laststatus=3
