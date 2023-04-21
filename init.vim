@@ -543,6 +543,8 @@ lua << EOF
 EOF
 
 augroup mygroup
+	autocmd FileType scss setl iskeyword+=@-@
+
   autocmd!
   " Setup formatexpr specified filetype(s).
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
