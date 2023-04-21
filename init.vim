@@ -48,7 +48,6 @@ Plug 'neovim/nvim-lspconfig'
 " Plug 'williamboman/mason.nvim'
 " Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
-" Plug 'windwp/nvim-autopairs'
 Plug 'https://github.com/windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
