@@ -88,9 +88,11 @@ Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
-" Plug 'puremourning/vimspector'
+Plug 'puremourning/vimspector'
 
 call plug#end()
+
+let mapleader=";"
 
 if (has("termguicolors"))
   set termguicolors
@@ -566,3 +568,4 @@ nmap <Leader>dk <Plug>VimspectorRestart
 nmap <Leader>dh <Plug>VimspectorStepOut
 nmap <Leader>dl <Plug>VimspectorStepInto
 nmap <Leader>dj <Plug>VimspectorStepOver
+
