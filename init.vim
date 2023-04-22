@@ -158,7 +158,11 @@ let g:svelte_preprocessors = ['ts', 'postcss', 'scss']
 
 let g:LanguageClient_serverCommands = {
 \ 'rust': ['rust-analyzer'],
+\ 'go': ['gopls']
 \ }
+
+" Run gofmt on save
+autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
