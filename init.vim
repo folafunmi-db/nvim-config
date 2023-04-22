@@ -161,9 +161,6 @@ let g:LanguageClient_serverCommands = {
 \ 'go': ['gopls']
 \ }
 
-" Run gofmt on save
-autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
-
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
 
