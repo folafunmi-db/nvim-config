@@ -364,6 +364,22 @@ lua << EOF
 	-- nvim lightbulb config
 	require('nvim-lightbulb').setup({autocmd = {enabled = true}})
 
+	util = require "lspconfig/util"
+
+	-- go lspconfig
+	require'lspconfig'.gopls.setup {
+		cmd = {"gopls", "serve"},
+    filetypes = {"go", "gomod"},
+    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+      },
+    },
+	}
 	-- astro lspconfig
 	require'lspconfig'.astro.setup{}
 
