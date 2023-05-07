@@ -343,7 +343,7 @@ nnoremap <c-o> <cmd>lua require('telescope').extensions.live_grep_args.live_grep
 nnoremap <c-m> <cmd>lua require('telescope.builtin').buffers()<cr>
 
 " make the line numbers standout
-:highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
+" :highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
 
 lua << EOF
 	require("rust-tools").setup({
