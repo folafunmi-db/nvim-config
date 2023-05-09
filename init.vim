@@ -40,6 +40,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'wuelnerdotexe/vim-astro'
 " Plug 'https://github.com/xiyaowong/nvim-transparent'
 Plug 'elixir-editors/vim-elixir'
+Plug 'olivercederborg/poimandres.nvim'
 " Plug 'Rigellute/shades-of-purple.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -119,6 +120,9 @@ syntax on
 
 " tokyonight theme config
 colorscheme tokyonight-storm
+
+" poimandres
+" colorscheme poimandres
 
 " disable bg transparent
 " let g:transparent_enabled = v:false
@@ -346,6 +350,10 @@ nnoremap <c-m> <cmd>lua require('telescope.builtin').buffers()<cr>
 " :highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
 
 lua << EOF
+	require('poimandres').setup {
+		disable_italics = false, -- disable italics
+	}
+
 	require("rust-tools").setup({
 		server = {
 			on_attach = function(_, bufnr)
