@@ -38,7 +38,6 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'wuelnerdotexe/vim-astro'
-" Plug 'https://github.com/xiyaowong/nvim-transparent'
 Plug 'elixir-editors/vim-elixir'
 Plug 'olivercederborg/poimandres.nvim'
 " Plug 'Rigellute/shades-of-purple.vim'
@@ -47,8 +46,6 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'junnplus/lsp-setup.nvim'
 Plug 'neovim/nvim-lspconfig'
-" Plug 'williamboman/mason.nvim'
-" Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'https://github.com/windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
