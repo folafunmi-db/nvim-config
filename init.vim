@@ -87,6 +87,7 @@ Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'puremourning/vimspector'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
