@@ -348,6 +348,12 @@ nnoremap <c-m> <cmd>lua require('telescope.builtin').buffers()<cr>
 " :highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
 
 lua << EOF
+	vim.filetype.add({
+		extension = {
+			mdx = 'markdown'
+		}
+	})
+
 	require('poimandres').setup {
 		disable_italics = false, -- disable italics
 	}
@@ -367,6 +373,8 @@ lua << EOF
 	require('nvim-lightbulb').setup({autocmd = {enabled = true}})
 
 	util = require "lspconfig/util"
+
+	require'lspconfig'.tailwindcss.setup{}
 
 	-- go lspconfig
 	require'lspconfig'.gopls.setup {
