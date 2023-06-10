@@ -39,7 +39,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'wuelnerdotexe/vim-astro'
 Plug 'elixir-editors/vim-elixir'
-Plug 'olivercederborg/poimandres.nvim'
 " Plug 'Rigellute/shades-of-purple.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -118,9 +117,7 @@ syntax on
 
 " tokyonight theme config
 colorscheme tokyonight-storm
-
-" poimandres
-" colorscheme poimandres
+" colorscheme toast
 
 " disable bg transparent
 " let g:transparent_enabled = v:false
@@ -353,10 +350,6 @@ lua << EOF
 			mdx = 'markdown'
 		}
 	})
-
-	require('poimandres').setup {
-		disable_italics = false, -- disable italics
-	}
 
 	require("rust-tools").setup({
 		server = {
