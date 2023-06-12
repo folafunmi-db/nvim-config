@@ -345,6 +345,8 @@ nnoremap <c-m> <cmd>lua require('telescope.builtin').buffers()<cr>
 " :highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
 
 lua << EOF
+	require'lspconfig'.pyright.setup{}
+
 	vim.filetype.add({
 		extension = {
 			mdx = 'markdown'
