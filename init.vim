@@ -37,6 +37,7 @@
 
 call plug#begin('~/.config/nvim/plugged')
 
+" Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 Plug 'wuelnerdotexe/vim-astro'
 Plug 'elixir-editors/vim-elixir'
 " Plug 'Rigellute/shades-of-purple.vim'
