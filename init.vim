@@ -94,6 +94,10 @@ call plug#end()
 
 let mapleader=";"
 
+" For vim multi to select all occurences in a file
+let g:VM_maps = {}
+let g:VM_maps["Select All"] = '<C-S-n>'
+
 if (has("termguicolors"))
   set termguicolors
 endif
