@@ -92,7 +92,8 @@ Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
-let mapleader="\\"
+" use <Space> as leader
+let mapleader=" "
 
 " For vim multi to select all occurences in a file
 let g:VM_maps = {}
