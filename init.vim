@@ -44,7 +44,6 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'junnplus/lsp-setup.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'https://github.com/windwp/nvim-ts-autotag'
