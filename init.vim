@@ -291,7 +291,16 @@ nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
-" for case insensistive search
+" Split panes
+nmap <leader>s :split <CR>
+nmap <leader>v :vsplit <CR>
+
+" Tab motions
+nmap <leader>t :tabnew <CR>
+nmap <leader>l :tabnext <CR>
+nmap <leader>h :tabprevious <CR>
+
+" For case insensistive search
 :nnoremap <silent> <CR> :nohlsearch<CR><CR>
 
 " For moving lines up and down
