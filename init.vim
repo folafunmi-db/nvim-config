@@ -429,7 +429,8 @@ lua <<EOF
 	require('lspconfig').elixirls.setup {
 		cmd = { "elixir-ls" },
 		on_attach = on_attach,
-		capabilities = capabilities
+		capabilities = capabilities,
+		filetypes = { "elixir", "eelixir", "heex", "surface", "exs", "lock"}
 	}
 EOF
 
