@@ -434,7 +434,7 @@ lua <<EOF
 
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+
 	require('lspconfig').elixirls.setup {
 		cmd = { "elixir-ls" },
 		on_attach = on_attach,
@@ -493,21 +493,37 @@ lua << EOF
 		flags = lsp_flags,
 	}
 
-	--local on_attach = function(client)
-  --  require'completion'.on_attach(client)
-	--end
+	local on_attach = function(client)
+    require'completion'.on_attach(client)
+	end
 
 	 -- rust_analyzer lspconfig
-		require('lspconfig')['rust_analyzer'].setup{
-			on_attach = on_attach,
-			flags = lsp_flags,
-			cmd = {
-				"rustup", "run", "stable", "rust-analyzer",
-				  },
-		--	settings = {
-		--		["rust-analyzer"] = {}
-		--	}
+	 require('lspconfig')['rust_analyzer'].setup{
+		on_attach = on_attach,
+		flags = lsp_flags,
+		cmd = {
+			"rustup", "run", "stable", "rust-analyzer",
+				},
+		on_attach=on_attach,
+		settings = {
+				["rust-analyzer"] = {
+						imports = {
+								granularity = {
+										group = "module",
+								},
+								prefix = "self",
+						},
+						cargo = {
+								buildScripts = {
+										enable = true,
+								},
+						},
+						procMacro = {
+								enable = true
+						},
+				}
 		}
+	 }
 
 		-- nvim-transparent config
 			-- require("transparent").setup({

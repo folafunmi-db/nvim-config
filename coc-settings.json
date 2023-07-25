@@ -3,24 +3,7 @@
   "diagnostic.checkCurrentLine": true,
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": false,
-  "rust-analyzer.checkOnSave.command": "clippy",
   "coc.preferences.formatOnSave": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "astro",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "javascriptreact",
-    "typescript.tsx",
-    "graphql",
-    "scss",
-    "sass",
-    "go",
-    "css",
-    "markdown",
-    "rust"
-  ],
   "go.goplsOptions": {
     "completeUnimported": true
   },
