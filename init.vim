@@ -175,9 +175,6 @@ let g:LanguageClient_serverCommands = {
 autocmd FileType nerdtree setlocal relativenumber
 
 " vim-prettier
-"let g:prettier#quickfix_enabled = 0
-"let g:prettier#quickfix_auto_focus = 0
-" prettier command for coc
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 nmap <C-b> :NERDTreeToggle<CR>
@@ -204,7 +201,7 @@ au BufReadPost *
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Open NERDTree when vim opens
-au VimEnter *  NERDTree
+" au VimEnter *  NERDTree
 
 " Focus on opened view after starting (instead of NERDTree)
 "autocmd VimEnter * call SyncTree()
@@ -216,9 +213,6 @@ au VimEnter * :wincmd w
 
 " Open NERDTree on the right
 let g:NERDTreeWinPos = "right"
-
-"ale for rust
-" let g:ale_linters = {'rust': ['analyzer'], 'typescript': ['eslint', 'tsserver', 'typecheck'] }
 
 " coc config
 let g:coc_global_extensions = [
@@ -234,10 +228,6 @@ let g:coc_global_extensions = [
 autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 command! -nargs=0 OR :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
-"autocmd FileType go nmap gtj :CocCommand go.tags.add json<cr>
-"autocmd FileType go nmap gty :CocCommand go.tags.add yaml<cr>
-"autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>
-
 set hidden 
 set nobackup
 set nowritebackup
@@ -249,16 +239,12 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-" :set completeopt-=preview " For No Previews
-
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1):
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" inoremap <silent><expr> <cr> "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
@@ -321,20 +307,11 @@ nnoremap <silent> <C-c> <cmd>:VMClear<CR>
 :cnoremap <C-c> <C-C>
 :cnoremap <C-[> <C-C>
 
-" Note: In command mode mappings to esc run the command for some odd
-" historical vi compatibility reason. We use the alternate method of
-" existing which is Ctrl-C
-
-" For inner search
-nmap <C-s-f> <Plug>CtrlSFPrompt
-vmap <C-s-f> <Plug>CtrlSFVwordPath
-
-
 " remap c-z to undo
 nnoremap <C-Z> u
 nnoremap <C-s-z> u
 		
-" Use K to show documentation in preview window
+" Use gk to show documentation in preview window
 nnoremap <silent> gk :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
@@ -345,29 +322,13 @@ function! s:show_documentation()
 	endif
 endfunction
 
-" Formatting selected code.
-xmap <leader>f <Plug>(coc-format-selected)
-nmap <leader>f <Plug>(coc-format-selected)
-
-" Keybinding for ThePrimeagen's harpoon
-" nnoremap <c-a> :lua require("harpoon.mark").add_file()<CR>
-" nnoremap <c-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
-" nnoremap <c-s-m> :lua require("harpoon.ui").toggle_quick_menu()<CR>
-" nnoremap <c-s-o> :lua require("harpoon.ui").nav_next()<CR>
-" nnoremap <c-s-i> :lua require("harpoon.ui").nav_prev()<CR>
-
-" Toogle term config for lazygit 
-" nnoremap <c-g> :lua _LAZYGIT_TOGGLE()<CR>
-
 " Telescope config vim
 nnoremap <c-p> <cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
 nnoremap <c-o> <cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>
-" nnoremap <c-o> <cmd>lua require('telescope.builtin').live_grep({ disable_coordinates = true })<cr>
 nnoremap <c-m> <cmd>lua require('telescope.builtin').buffers()<cr>
 
 " make the line numbers standout
 " :highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
-
 
 lua <<EOF
   -- Set up nvim-cmp.
@@ -375,12 +336,8 @@ lua <<EOF
 
   cmp.setup({
     snippet = {
-      -- REQUIRED - you must specify a snippet engine
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
     },
     window = {
@@ -397,9 +354,6 @@ lua <<EOF
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
     }, {
       { name = 'buffer' },
     })
@@ -408,7 +362,7 @@ lua <<EOF
   -- Set configuration for specific filetype.
   cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
-      { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+      { name = 'git' },
     }, {
       { name = 'buffer' },
     })
@@ -504,7 +458,6 @@ lua << EOF
 		cmd = {
 			"rustup", "run", "stable", "rust-analyzer",
 				},
-		on_attach=on_attach,
 		settings = {
 				["rust-analyzer"] = {
 						imports = {
@@ -617,21 +570,6 @@ lua << EOF
     show_current_context_start = true,
 	}
 
-	-- autopairs config
-	-- local npairs = require("nvim-autopairs")
-
-	-- npairs.setup({
-		-- enable_check_bracket_line = false,
-		-- check_ts = true,
-		-- ts_config = {
-				-- lua = {'string'},-- it will not add a pair on that treesitter node
-				-- javascript = {'template_string'},
-				-- java = false,-- don't check treesitter on java
-		-- }
-	-- })
-
-	-- local ts_conds = require('nvim-autopairs.ts-conds')
-
 	-- tree sitter plugin
 	require'nvim-treesitter.configs'.setup({
 		autotag = {
@@ -654,7 +592,7 @@ lua << EOF
 	local ToggleTerm = require("toggleterm")
 
 	ToggleTerm.setup({
-	  open_mapping = [[<c-.>]],
+	  open_mapping = [[<leader>j]],
 	  direction="float"
 	})
 
