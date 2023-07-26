@@ -282,9 +282,9 @@ nnoremap <leader>s :split <CR>
 nnoremap <leader>v :vsplit <CR>
 
 " Tab motions
-nnoremap <leader>t :tabnew <CR>
-nnoremap <leader>l :tabnext <CR>
-nnoremap <leader>h :tabprevious <CR>
+" nnoremap <leader>t :tabnew <CR>
+" nnoremap <leader>l :tabnext <CR>
+" nnoremap <leader>h :tabprevious <CR>
 
 " For case insensistive search
 :nnoremap <silent> <CR> :nohlsearch<CR><CR>
@@ -593,7 +593,7 @@ lua << EOF
 	local ToggleTerm = require("toggleterm")
 
 	ToggleTerm.setup({
-	  open_mapping = [[<leader>j]],
+	  open_mapping = [[<leader>e]],
 	  direction="float"
 	})
 
