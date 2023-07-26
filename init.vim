@@ -100,8 +100,8 @@ Plug 'hrsh7th/vim-vsnip'
 
 call plug#end()
 
-" use <Space> as leader
-let mapleader=" "
+" use \\ as leader
+let mapleader="\\"
 
 " For vim multi to select all occurences in a file
 let g:VM_maps = {}
@@ -278,13 +278,13 @@ nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
 " Split panes
-nmap <leader>s :split <CR>
-nmap <leader>v :vsplit <CR>
+nnoremap <leader>s :split <CR>
+nnoremap <leader>v :vsplit <CR>
 
 " Tab motions
-nmap <leader>t :tabnew <CR>
-nmap <leader>l :tabnext <CR>
-nmap <leader>h :tabprevious <CR>
+nnoremap <leader>t :tabnew <CR>
+nnoremap <leader>l :tabnext <CR>
+nnoremap <leader>h :tabprevious <CR>
 
 " For case insensistive search
 :nnoremap <silent> <CR> :nohlsearch<CR><CR>
