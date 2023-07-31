@@ -100,8 +100,8 @@ Plug 'hrsh7th/vim-vsnip'
 
 call plug#end()
 
-" use \\ as leader
-let mapleader="\\"
+" use space as leader
+let mapleader=" "
 
 " For vim multi to select all occurences in a file
 let g:VM_maps = {}
@@ -326,7 +326,7 @@ endfunction
 nnoremap <c-p> <cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
 nnoremap <leader>p <cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
 nnoremap <c-o> <cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>
-nnoremap <c-m> <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
 
 " make the line numbers standout
 " :highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
@@ -608,7 +608,8 @@ lua << EOF
 
 	ToggleTerm.setup({
 	  open_mapping = [[<leader>e]],
-	  direction="float"
+	  direction="float",
+		insert_mappings=false
 	})
 
 	local Terminal  = require('toggleterm.terminal').Terminal
