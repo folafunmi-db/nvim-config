@@ -610,7 +610,8 @@ lua << EOF
 	ToggleTerm.setup({
 	  open_mapping = [[<leader>e]],
 	  direction="float",
-		insert_mappings=false
+		insert_mappings=false,
+		terminal_mappings=false
 	})
 
 	local Terminal  = require('toggleterm.terminal').Terminal
