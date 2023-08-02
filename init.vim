@@ -353,6 +353,12 @@ lua <<EOF
 	require("neo-tree").setup({
 		window = {
 			position = "float",
+			mappings = {
+				["<cr>"] = "open",
+				["o"] = "open",
+				["x"] = "close_node",
+				["X"] = "cut_to_clipboard",
+			}
 		},
 		filesystem = {
 			filtered_items = {
