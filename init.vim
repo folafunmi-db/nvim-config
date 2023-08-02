@@ -350,18 +350,20 @@ lua <<EOF
   --   })
   -- })
 
-	-- require("neo-tree").setup({
-	-- 	hijack_netrw_behavior = "disabled",
-	-- 	window = {
-	-- 		position = "float",
-	-- 		mappings = {
-	-- 			["<cr>"] = "open",
-	-- 			["o"] = "open",
-	-- 			["x"] = "close_node",
-	-- 			["X"] = "cut_to_clipboard",
-	-- 		}
-	-- 	},
-	-- })
+	require("neo-tree").setup({
+		filesystem = {
+			hijack_netrw_behavior = "disabled",
+		},
+		window = {
+			position = "float",
+			mappings = {
+				["<cr>"] = "open",
+				["o"] = "open",
+				["x"] = "close_node",
+				["X"] = "cut_to_clipboard",
+			}
+		},
+	})
 
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
