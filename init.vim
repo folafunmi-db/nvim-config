@@ -38,6 +38,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
+Plug 'prichrd/netrw.nvim'
 Plug 'wuelnerdotexe/vim-astro'
 Plug 'elixir-editors/vim-elixir'
 " Plug 'Rigellute/shades-of-purple.vim'
@@ -349,6 +350,16 @@ lua <<EOF
   --     { name = 'cmdline' }
   --   })
   -- })
+
+	require'netrw'.setup{
+		icons = {
+			symlink = '', -- Symlink icon (directory and file)
+			directory = '', -- Directory icon
+			file = '', -- File icon
+		},
+		use_devicons = true, -- Uses nvim-web-devicons if true, otherwise use the file icon specified above
+		mappings = {}, -- Custom key mappings
+	}
 
 	require("neo-tree").setup({
 		filesystem = {
