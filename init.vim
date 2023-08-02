@@ -43,6 +43,8 @@ Plug 'elixir-editors/vim-elixir'
 " Plug 'Rigellute/shades-of-purple.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v3.x' }
+Plug 'MunifTanjim/nui.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'norcalli/nvim-colorizer.lua'
@@ -56,14 +58,12 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-pack/nvim-spectre'
 Plug 'mfussenegger/nvim-dap'
 " Plug 'ThePrimeagen/harpoon'
-Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'https://github.com/simeji/winresizer'
 Plug 'https://github.com/tpope/vim-commentary'
 Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring'
-Plug 'https://github.com/preservim/nerdtree' " NerdTree
 Plug 'https://github.com/vim-airline/vim-airline' " Status bar
 Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
 Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
@@ -72,7 +72,6 @@ Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
 Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'jparise/vim-graphql'
 Plug 'dyng/ctrlsf.vim'
@@ -145,18 +144,6 @@ let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 
-let g:nerdtree_sync_cursorline = 1
-let g:NERDTreeHighlightCursorline = 1
-
-" show git status with symbols
-let g:NERDTreeGitStatusWithFlags = 1
-
-" show hidden files
-let NERDTreeShowHidden=1
-
-" enable line numbers
-let NERDTreeShowLineNumbers=1
-
 " for vim-svelte to enable preprocessors
  let g:svelte_preprocessor_tags = [
    \ { 'name': 'postcss', 'tag': 'style', 'as': 'scss' },
@@ -171,22 +158,14 @@ let g:LanguageClient_serverCommands = {
 \ 'go': ['gopls']
 \ }
 
-" make sure relative line numbers are used
-autocmd FileType nerdtree setlocal relativenumber
-
 " vim-prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-nmap <C-b> :NERDTreeToggle<CR>
-vmap ++ <plug>NERDCommenterToggle
-nmap ++ <plug>NERDCommenterToggle
+nmap <C-b> :Neotree filesystem toggle reveal float<CR>
 
 " Preserve scroll position when switching between buffers
 au BufLeave * if !&diff | let b:winview = winsaveview() | endif
 au BufEnter * if exists('b:winview') && !&diff | call winrestview(b:winview) | unlet! b:winview | endif
-
-" Prevent Tab on NERDTree (breaks everything otherwise)
-autocmd FileType nerdtree noremap <buffer> <Tab> <nop>
 
 " nvim code actions
 nnoremap <silent> <C-i> <cmd>:CodeActionMenu<CR>
@@ -196,23 +175,6 @@ au BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") && &filetype != "gitcommit" |
     \ execute("normal `\"") |
   \ endif
-
-" Automatically close vim if only NERDTree left
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" Open NERDTree when vim opens
-" au VimEnter *  NERDTree
-
-" Focus on opened view after starting (instead of NERDTree)
-"autocmd VimEnter * call SyncTree()
-au VimEnter * :wincmd w
-
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-" autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    " \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-" Open NERDTree on the right
-let g:NERDTreeWinPos = "right"
 
 " coc config
 let g:coc_global_extensions = [
