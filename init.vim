@@ -163,6 +163,7 @@ let g:LanguageClient_serverCommands = {
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 nmap <C-b> :Neotree filesystem toggle reveal float<CR>
+nmap <leader>k :Neotree filesystem toggle reveal float<CR>
 
 " Preserve scroll position when switching between buffers
 au BufLeave * if !&diff | let b:winview = winsaveview() | endif
