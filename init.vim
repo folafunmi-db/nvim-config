@@ -38,6 +38,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
+Plug 'szw/vim-maximizer'
 Plug 'prichrd/netrw.nvim'
 Plug 'wuelnerdotexe/vim-astro'
 Plug 'elixir-editors/vim-elixir'
@@ -253,6 +254,9 @@ nnoremap <leader>h :tabprevious <CR>
 
 " For case insensistive search
 :nnoremap <silent> <CR> :nohlsearch<CR><CR>
+
+" For window maximizer
+nnoremap <silent> <leader>w :MaximizerToggle<CR>
 
 " For moving lines up and down
 let g:move_key_modifier = 'S'
