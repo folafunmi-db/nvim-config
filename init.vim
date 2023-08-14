@@ -602,7 +602,7 @@ lua << EOF
 	local ToggleTerm = require("toggleterm")
 
 	ToggleTerm.setup({
-	  open_mapping = [[<leader>e]],
+	  open_mapping = [[<leader>k]],
 	  direction="float",
 		insert_mappings=false,
 		terminal_mappings=false
