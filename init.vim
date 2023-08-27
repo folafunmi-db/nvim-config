@@ -170,6 +170,10 @@ nmap <leader>j :Neotree filesystem toggle reveal float<CR>
 au BufLeave * if !&diff | let b:winview = winsaveview() | endif
 au BufEnter * if exists('b:winview') && !&diff | call winrestview(b:winview) | unlet! b:winview | endif
 
+" use very magic mode
+:nnoremap / /\v
+:cnoremap %s/ %s/\v
+
 " nvim code actions
 nnoremap <silent> <C-i> <cmd>:CodeActionMenu<CR>
 nnoremap <silent> <leader>i <cmd>:CodeActionMenu<CR>
