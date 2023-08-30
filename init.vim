@@ -449,6 +449,10 @@ lua << EOF
 		}
 		vim.lsp.buf.execute_command(params)
 	end
+
+	-- marksman config
+	require'lspconfig'.marksman.setup{}
+
 	-- ts lspconfig
 	 require('lspconfig')['tsserver'].setup{
 		on_attach = on_attach,
