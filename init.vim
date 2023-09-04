@@ -304,7 +304,7 @@ nnoremap <c-o> <cmd>lua require('telescope').extensions.live_grep_args.live_grep
 nnoremap <leader>o <cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>
 nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>wr <cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>
-nnoremap <leader>wR <cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>
+nnoremap <leader>wa <cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>
 
 " make the line numbers standout
 " :highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
