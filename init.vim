@@ -38,6 +38,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
+Plug 'folke/twilight.nvim'
 Plug 'szw/vim-maximizer'
 Plug 'prichrd/netrw.nvim'
 Plug 'wuelnerdotexe/vim-astro'
@@ -302,6 +303,8 @@ nnoremap <leader>p <cmd>lua require('telescope.builtin').find_files({ find_comma
 nnoremap <c-o> <cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>
 nnoremap <leader>o <cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>
 nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>wr <cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>
+nnoremap <leader>wR <cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>
 
 " make the line numbers standout
 " :highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
@@ -361,6 +364,10 @@ lua <<EOF
   --     { name = 'cmdline' }
   --   })
   -- })
+
+
+	-- git-worktree setup
+	require("git-worktree").setup()
 
 	require'netrw'.setup{
 		icons = {
@@ -541,6 +548,7 @@ lua << EOF
 	}
 
 	require('telescope').load_extension('fzf')
+	require("telescope").load_extension("git_worktree")
 
 	-- webdev icons config
 	require'nvim-web-devicons'.setup {
