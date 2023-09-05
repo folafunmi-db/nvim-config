@@ -22,5 +22,5 @@
   "elixirLS.dialyzerEnabled": false,
   "html.format.indentInnerHtml": true,
   "snippets.ultisnips.pythonPrompt": false,
-  "zig.zls.path": "/Users/mac/Downloads/zig-aarm64/"
+  "zig.zls.path": "/Users/mac/.config/coc/extensions/coc-zls-data/zls_install/zls"
 }
