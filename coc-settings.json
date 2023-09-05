@@ -21,5 +21,6 @@
   "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
   "elixirLS.dialyzerEnabled": false,
   "html.format.indentInnerHtml": true,
-  "snippets.ultisnips.pythonPrompt": false
+  "snippets.ultisnips.pythonPrompt": false,
+  "zig.zls.path": "/Users/mac/Downloads/zig-aarm64/"
 }
