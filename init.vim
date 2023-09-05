@@ -38,6 +38,8 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'folke/twilight.nvim'
 Plug 'szw/vim-maximizer'
 Plug 'prichrd/netrw.nvim'
@@ -393,6 +395,10 @@ lua <<EOF
 			}
 		},
 	})
+
+	require("mason").setup()
+
+	require("mason-lspconfig").setup()
 
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
