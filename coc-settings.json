@@ -23,10 +23,8 @@
       "ignoredRootPaths": ["~"]
     }
   },
+  "workspace.ignoredFolders": ["$HOME", "$HOME/.cargo/**", "$HOME/.rustup/**"],
   "svelte.enable-ts-plugin": true,
-  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
-  "elixirLS.dialyzerEnabled": false,
   "html.format.indentInnerHtml": true,
-  "snippets.ultisnips.pythonPrompt": false,
-  "zig.zls.path": "/Users/mac/.config/coc/extensions/coc-zls-data/zls_install/zls"
+  "snippets.ultisnips.pythonPrompt": false
 }
