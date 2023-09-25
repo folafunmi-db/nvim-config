@@ -45,7 +45,7 @@ Plug 'szw/vim-maximizer'
 Plug 'prichrd/netrw.nvim'
 Plug 'wuelnerdotexe/vim-astro'
 Plug 'elixir-editors/vim-elixir'
-" Plug 'Rigellute/shades-of-purple.vim'
+Plug 'Rigellute/shades-of-purple.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v3.x' }
@@ -127,7 +127,7 @@ if !has('nvim')
 endif
 
 " shades of purple theme config - not in use now though
-" syntax enable
+syntax enable
 " colorscheme shades_of_purple
 " let g:shades_of_purple_airline = 1
 " let g:airline_theme='shades_of_purple'
