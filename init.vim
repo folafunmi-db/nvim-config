@@ -44,6 +44,7 @@ Plug 'folke/twilight.nvim'
 Plug 'szw/vim-maximizer'
 Plug 'prichrd/netrw.nvim'
 Plug 'wuelnerdotexe/vim-astro'
+Plug 'wavded/vim-stylus'
 Plug 'elixir-editors/vim-elixir'
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'editorconfig/editorconfig-vim'
@@ -56,7 +57,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'https://github.com/windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 Plug 'nvim-telescope/telescope-live-grep-args.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-lua/plenary.nvim'
@@ -85,10 +86,10 @@ Plug 'wakatime/vim-wakatime'
 Plug 'matze/vim-move'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'weilbith/nvim-code-action-menu'
 Plug 'kosayoda/nvim-lightbulb'
 Plug 'antoinemadec/FixCursorHold.nvim'
-Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'puremourning/vimspector'
@@ -403,7 +404,7 @@ lua <<EOF
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-	require('lspconfig').elixirls.setup {
+ require('lspconfig').elixirls.setup {
 		cmd = { "elixir-ls" },
 		on_attach = on_attach,
 		capabilities = capabilities,
@@ -596,12 +597,7 @@ lua << EOF
 	require'colorizer'.setup()
 
 	-- indentation config
-	require("indent_blankline").setup {
-		space_char_blankline = " ",
-    show_current_context = true,
-		show_end_of_line = true,
-    show_current_context_start = true,
-	}
+	require("ibl").setup {}
 
 	-- tree sitter plugin
 	require'nvim-treesitter.configs'.setup({
