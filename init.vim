@@ -94,6 +94,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'puremourning/vimspector'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'leafOfTree/vim-svelte-plugin'
 
 " auto-completion
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -142,6 +143,9 @@ colorscheme tokyonight-storm
 
 " disable bg transparent
 " let g:transparent_enabled = v:false
+
+" Svelte syntax highlighting
+let g:vim_svelte_plugin_load_full_syntax = 1
 
 " vim-astro config
 let g:astro_typescript = 'enable'

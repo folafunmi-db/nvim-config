@@ -26,5 +26,6 @@
   "workspace.ignoredFolders": ["$HOME", "$HOME/.cargo/**", "$HOME/.rustup/**"],
   "svelte.enable-ts-plugin": true,
   "html.format.indentInnerHtml": true,
-  "snippets.ultisnips.pythonPrompt": false
+  "snippets.ultisnips.pythonPrompt": false,
+  "semanticTokens.enable": true
 }
