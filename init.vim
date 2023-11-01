@@ -166,7 +166,8 @@ let g:svelte_preprocessors = ['ts', 'postcss', 'scss']
 
 let g:LanguageClient_serverCommands = {
 \ 'rust': ['rust-analyzer'],
-\ 'go': ['gopls']
+\ 'go': ['gopls'],
+\ 'vue': ['vls']
 \ }
 
 " vim-prettier
@@ -418,6 +419,10 @@ EOF
 
 lua << EOF
 	require'lspconfig'.pyright.setup{}
+
+	require'lspconfig'.volar.setup{}
+
+	require'lspconfig'.svelte.setup{}
 
 	vim.filetype.add({
 		extension = {
