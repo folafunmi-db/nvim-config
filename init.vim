@@ -422,7 +422,15 @@ lua << EOF
 
 	require'lspconfig'.volar.setup{}
 
+	require'lspconfig'.dockerls.setup{}
+
+	require'lspconfig'.html.setup{}
+
+	require'lspconfig'.cssls.setup{}
+
 	require'lspconfig'.svelte.setup{}
+
+	require'lspconfig'.graphql.setup{}
 
 	vim.filetype.add({
 		extension = {
