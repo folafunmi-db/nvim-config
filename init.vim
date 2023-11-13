@@ -38,6 +38,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
+Plug 'luk400/vim-jukit'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'folke/twilight.nvim'
