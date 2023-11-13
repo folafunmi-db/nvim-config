@@ -427,6 +427,8 @@ lua << EOF
 
 	require'lspconfig'.html.setup{}
 
+	-- require'lspconfig'.htmx.setup{}
+
 	require'lspconfig'.cssls.setup{}
 
 	require'lspconfig'.svelte.setup{}
