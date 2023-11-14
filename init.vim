@@ -50,7 +50,7 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-" Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v3.x' }
+Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v3.x' }
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
@@ -175,9 +175,9 @@ let g:LanguageClient_serverCommands = {
 " vim-prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-" nmap <C-b> :Neotree filesystem toggle reveal float<CR>
-" nmap <leader>j :Neotree filesystem toggle reveal float<CR>
-nmap <leader>j :Telescope file_browser<CR>
+nmap <C-b> :Neotree filesystem toggle reveal float<CR>
+nmap <leader>j :Neotree filesystem toggle reveal float<CR>
+" nmap <leader>j :Telescope file_browser<CR>
 
 " Preserve scroll position when switching between buffers
 au BufLeave * if !&diff | let b:winview = winsaveview() | endif
@@ -390,20 +390,20 @@ lua <<EOF
 		mappings = {}, -- Custom key mappings
 	}
 
-	-- require("neo-tree").setup({
-	-- 	filesystem = {
-	-- 		hijack_netrw_behavior = "disabled",
-	-- 	},
-	-- 	window = {
-	-- 		position = "float",
-	-- 		mappings = {
-	-- 			["<cr>"] = "open",
-	-- 			["o"] = "open",
-	-- 			["x"] = "close_node",
-	-- 			["X"] = "cut_to_clipboard",
-	-- 		}
-	-- 	},
-	-- })
+	require("neo-tree").setup({
+		filesystem = {
+			hijack_netrw_behavior = "disabled",
+		},
+		window = {
+			position = "float",
+			mappings = {
+				["<cr>"] = "open",
+				["o"] = "open",
+				["x"] = "close_node",
+				["X"] = "cut_to_clipboard",
+			}
+		},
+	})
 
 	require("mason").setup()
 
