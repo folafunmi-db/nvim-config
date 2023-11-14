@@ -38,7 +38,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
-Plug 'luk400/vim-jukit'
+" Plug 'luk400/vim-jukit'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'folke/twilight.nvim'
@@ -50,7 +50,8 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v3.x' }
+" Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v3.x' }
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'neovim/nvim-lspconfig'
@@ -58,10 +59,10 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'https://github.com/windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
+Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 Plug 'nvim-telescope/telescope-live-grep-args.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-pack/nvim-spectre'
 Plug 'mfussenegger/nvim-dap'
 " Plug 'ThePrimeagen/harpoon'
@@ -174,8 +175,9 @@ let g:LanguageClient_serverCommands = {
 " vim-prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-nmap <C-b> :Neotree filesystem toggle reveal float<CR>
-nmap <leader>j :Neotree filesystem toggle reveal float<CR>
+" nmap <C-b> :Neotree filesystem toggle reveal float<CR>
+" nmap <leader>j :Neotree filesystem toggle reveal float<CR>
+nmap <leader>j :Telescope file_browser<CR>
 
 " Preserve scroll position when switching between buffers
 au BufLeave * if !&diff | let b:winview = winsaveview() | endif
@@ -388,20 +390,20 @@ lua <<EOF
 		mappings = {}, -- Custom key mappings
 	}
 
-	require("neo-tree").setup({
-		filesystem = {
-			hijack_netrw_behavior = "disabled",
-		},
-		window = {
-			position = "float",
-			mappings = {
-				["<cr>"] = "open",
-				["o"] = "open",
-				["x"] = "close_node",
-				["X"] = "cut_to_clipboard",
-			}
-		},
-	})
+	-- require("neo-tree").setup({
+	-- 	filesystem = {
+	-- 		hijack_netrw_behavior = "disabled",
+	-- 	},
+	-- 	window = {
+	-- 		position = "float",
+	-- 		mappings = {
+	-- 			["<cr>"] = "open",
+	-- 			["o"] = "open",
+	-- 			["x"] = "close_node",
+	-- 			["X"] = "cut_to_clipboard",
+	-- 		}
+	-- 	},
+	-- })
 
 	require("mason").setup()
 
@@ -576,6 +578,7 @@ lua << EOF
 
 	require('telescope').load_extension('fzf')
 	require("telescope").load_extension("git_worktree")
+	require("telescope").load_extension("file_browser")
 
 	-- webdev icons config
 	require'nvim-web-devicons'.setup {
