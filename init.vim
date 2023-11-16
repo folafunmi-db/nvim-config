@@ -39,6 +39,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 " Plug 'luk400/vim-jukit'
+Plug 'yaegassy/coc-intelephense', {'do': 'yarn install --frozen-lockfile'}
 Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 Plug 'elixir-tools/elixir-tools.nvim'
 Plug 'elixir-editors/vim-elixir'
@@ -421,9 +422,10 @@ lua <<EOF
 			filetypes = { "elixir", "eelixir", "heex", "surface", "exs", "lock"}
 	 }
 	
-	require("elixir").setup({
-		nextls = {enable = false},
-	})
+	-- tends to slow down nvim
+	-- require("elixir").setup({
+		-- nextls = {enable = false},
+	-- })
 
 EOF
 
