@@ -39,6 +39,9 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 " Plug 'luk400/vim-jukit'
+Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
+Plug 'elixir-tools/elixir-tools.nvim'
+Plug 'elixir-editors/vim-elixir'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'folke/twilight.nvim'
@@ -46,7 +49,6 @@ Plug 'szw/vim-maximizer'
 Plug 'prichrd/netrw.nvim'
 Plug 'wuelnerdotexe/vim-astro'
 Plug 'wavded/vim-stylus'
-Plug 'elixir-editors/vim-elixir'
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -412,12 +414,17 @@ lua <<EOF
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
- require('lspconfig').elixirls.setup {
-		cmd = { "elixir-ls" },
-		on_attach = on_attach,
-		capabilities = capabilities,
-		filetypes = { "elixir", "eelixir", "heex", "surface", "exs", "lock"}
-	}
+	 require('lspconfig').elixirls.setup {
+			-- cmd = { "elixir-ls" },
+			on_attach = on_attach,
+			capabilities = capabilities,
+			filetypes = { "elixir", "eelixir", "heex", "surface", "exs", "lock"}
+	 }
+	
+	require("elixir").setup({
+		nextls = {enable = false},
+	})
+
 EOF
 
 lua << EOF
@@ -436,7 +443,7 @@ lua << EOF
 	require'lspconfig'.svelte.setup{}
 
 	require'lspconfig'.graphql.setup{}
-
+	
 	vim.filetype.add({
 		extension = {
 			mdx = 'markdown'

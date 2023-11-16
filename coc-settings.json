@@ -21,8 +21,15 @@
       "args": ["start"],
       "filetypes": ["sh"],
       "ignoredRootPaths": ["~"]
+    },
+    "elixirLS": {
+      "command": "/absolute/path/to/elixir-ls/release/language_server.sh",
+      "filetypes": ["elixir", "eelixir"]
     }
   },
+  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
+  "elixirLS.dialyzerEnabled": false,
+  "codeLens.enable": true,
   "workspace.ignoredFolders": ["$HOME", "$HOME/.cargo/**", "$HOME/.rustup/**"],
   "svelte.enable-ts-plugin": true,
   "html.format.indentInnerHtml": true,
