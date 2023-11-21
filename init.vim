@@ -633,6 +633,18 @@ lua << EOF
 
 	-- tree sitter plugin
 	require'nvim-treesitter.configs'.setup({
+		 ensure_installed = {
+				"eex",
+				"elixir",
+				"erlang",
+				"heex",
+				"html",
+				"css",
+				"go",
+				"rust",
+				"json",
+				"lua",
+		},
 		autotag = {
 			enable = true,
     },
