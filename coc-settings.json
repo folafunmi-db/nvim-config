@@ -23,7 +23,7 @@
       "ignoredRootPaths": ["~"]
     },
     "elixirLS": {
-      "command": "/absolute/path/to/elixir-ls/release/language_server.sh",
+      "command": "~/.elixir-ls/release/language_server.sh",
       "filetypes": ["elixir", "eelixir"]
     }
   },
