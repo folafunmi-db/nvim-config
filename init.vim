@@ -56,6 +56,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v3.x' }
 Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 's1n7ax/nvim-window-picker'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'neovim/nvim-lspconfig'
@@ -657,9 +658,6 @@ lua << EOF
     	enable = true,
     	additional_vim_regex_highlighting = false,
   	},
-		context_commentstring = {
-			enable = true,
-		}
 	})
 
 	require'treesitter-context'.setup{
