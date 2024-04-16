@@ -40,7 +40,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 " Plug 'luk400/vim-jukit'
 Plug 'mbbill/undotree'
-Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
+" Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 Plug 'yaegassy/coc-intelephense', {'do': 'yarn install --frozen-lockfile'}
 Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 Plug 'elixir-tools/elixir-tools.nvim'
