@@ -215,7 +215,7 @@ let g:coc_global_extensions = [
   \ ]
 
 " Format elixir files on save
-autocmd BufWritePre *.ex,*.exs execute "!mix format %"
+" autocmd BufWritePre *.ex,*.exs execute "!mix format %"
 
 "Add missing go imports on save
 autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
