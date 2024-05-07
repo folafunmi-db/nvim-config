@@ -432,7 +432,7 @@ lua <<EOF
 	-- credo tends to slow down nvim
 	require("elixir").setup({
 		nextls = {enable = true},
-	  credo = {enable = false},
+		credo = {enable = false},
 		elixirls = {enable = true},
 	})
 
