@@ -430,9 +430,11 @@ lua <<EOF
 	 }
 	
 	-- tends to slow down nvim
-	-- require("elixir").setup({
-		-- nextls = {enable = false},
-	-- })
+	require("elixir").setup({
+		nextls = {enable = true},
+	  credo = {enable = false},
+		elixirls = {enable = true},
+	})
 
 EOF
 
