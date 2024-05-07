@@ -429,7 +429,7 @@ lua <<EOF
 			filetypes = { "elixir", "eelixir", "heex", "surface", "exs", "lock"}
 	 }
 	
-	-- tends to slow down nvim
+	-- credo tends to slow down nvim
 	require("elixir").setup({
 		nextls = {enable = true},
 	  credo = {enable = false},
