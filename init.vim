@@ -724,7 +724,7 @@ lua << EOF
 	vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 EOF
 
-augroup mygroup
+augroup mygrup
 	autocmd FileType scss setl iskeyword+=@-@
 
   autocmd!
