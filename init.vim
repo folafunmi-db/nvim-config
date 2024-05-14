@@ -39,6 +39,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 " Plug 'luk400/vim-jukit'
+Plug 'sourcegraph/sg.nvim', { 'do': 'nvim -l build/init.lua' }
 Plug 'mbbill/undotree'
 " Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 Plug 'yaegassy/coc-intelephense', {'do': 'yarn install --frozen-lockfile'}
@@ -386,6 +387,8 @@ lua <<EOF
   --   })
   -- })
 
+	-- sourcegraph
+	require("sg").setup()
 
 	-- git-worktree setup
 	require("git-worktree").setup()
