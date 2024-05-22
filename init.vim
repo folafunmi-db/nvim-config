@@ -641,7 +641,7 @@ lua << EOF
 	require'colorizer'.setup()
 
 	-- indentation config
-	require("ibl").setup {}
+	-- require("ibl").setup {}
 
 	-- tree sitter plugin
 	require'nvim-treesitter.configs'.setup({
