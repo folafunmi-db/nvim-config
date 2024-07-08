@@ -13,7 +13,7 @@
 :set encoding=UTF-8
 :set nowrap
 :set autowriteall
-:set foldmethod=indent
+:set fold
 :set foldnestmax=10
 :set nofoldenable
 :set foldlevel=99
