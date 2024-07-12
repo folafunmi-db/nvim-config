@@ -13,10 +13,16 @@
 :set encoding=UTF-8
 :set nowrap
 :set autowriteall
+
 " :set fold
-:set foldnestmax=10
-:set nofoldenable
+" :set foldnestmax=10
+" :set nofoldenable
+
+:set foldenable
 :set foldlevel=99
+:set foldminlines=1
+:set foldnestmax=3
+
 :set background=dark
 :set colorcolumn=100
 :set clipboard+=unnamedplus
