@@ -18,6 +18,8 @@
 " :set foldnestmax=10
 " :set nofoldenable
 
+:set foldcolumn=4
+:set foldmethod=indent
 :set foldenable
 :set foldlevel=99
 :set foldminlines=1
