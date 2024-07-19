@@ -47,6 +47,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 " Plug 'luk400/vim-jukit'
+Plug 'sebdah/vim-delve'
 Plug 'sourcegraph/sg.nvim', { 'do': 'nvim -l build/init.lua' }
 Plug 'mbbill/undotree'
 " Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
