@@ -19,7 +19,7 @@
 " :set nofoldenable
 
 :set foldcolumn=4
-:set foldmethod=indent
+" :set foldmethod=indent
 :set foldenable
 :set foldlevel=99
 :set foldminlines=1
@@ -696,6 +696,19 @@ lua << EOF
 	vim.keymap.set("n", "[c", function()
 		require("treesitter-context").go_to_context(vim.v.count1)
 	end, { silent = true })
+
+	vim.api.nvim_create_autocmd({ "FileType" }, {
+		callback = function()
+			if require("nvim-treesitter.parsers").has_parser() then
+				vim.opt.foldmethod = "expr"
+				vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+				vim.opt.foldenable = false
+			else
+				vim.opt.foldmethod = "syntax"
+				vim.opt.foldenable = false
+			end
+		end,
+	})
 EOF
 
 lua << EOF
