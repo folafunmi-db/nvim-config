@@ -15,8 +15,6 @@
 :set autowriteall
 
 " :set fold
-" :set foldnestmax=10
-" :set nofoldenable
 
 :set foldcolumn=4
 " :set foldmethod=indent
