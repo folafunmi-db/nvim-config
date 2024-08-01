@@ -34,5 +34,9 @@
   "svelte.enable-ts-plugin": true,
   "html.format.indentInnerHtml": true,
   "snippets.ultisnips.pythonPrompt": false,
-  "semanticTokens.enable": true
+  "semanticTokens.enable": true,
+  "zig.enabled": true,
+  "zig.startUpMessage": true,
+  "zig.path": "zls",
+  "zig.debugLog": false
 }

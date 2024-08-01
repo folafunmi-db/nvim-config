@@ -47,6 +47,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 " Plug 'luk400/vim-jukit'
+Plug 'ziglang/zig.vim'
 Plug 'sebdah/vim-delve'
 Plug 'sourcegraph/sg.nvim', { 'do': 'nvim -l build/init.lua' }
 Plug 'mbbill/undotree'
@@ -117,6 +118,7 @@ Plug 'leafOfTree/vim-svelte-plugin'
 
 " auto-completion
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
@@ -672,6 +674,11 @@ lua << EOF
 		indent = {
     	enable = true
   	},
+		rainbow = {
+			enable = true,
+			extended_mode = true,
+			max_file_lines = nil,
+		},
   	highlight = {
     	enable = true,
     	additional_vim_regex_highlighting = false,
