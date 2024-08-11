@@ -80,7 +80,6 @@ Plug 'nvim-telescope/telescope-live-grep-args.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'nvim-pack/nvim-spectre'
-Plug 'mfussenegger/nvim-dap'
 " Plug 'ThePrimeagen/harpoon'
 Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'https://github.com/simeji/winresizer'
@@ -110,7 +109,16 @@ Plug 'kosayoda/nvim-lightbulb'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
-Plug 'puremourning/vimspector'
+
+" Plug 'puremourning/vimspector'
+Plug 'mfussenegger/nvim-dap'
+Plug 'nvim-neotest/nvim-nio'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'mxsdev/nvim-dap-vscode-js'
+Plug 'microsoft/vscode-js-debug', {'do': 'yarn install && npx gulp vsDebugServerBundle && mv dist out'}
+
+
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'leafOfTree/vim-svelte-plugin'
 
@@ -451,6 +459,10 @@ lua <<EOF
 EOF
 
 lua << EOF
+	require("dapui").setup()
+
+	require("nvim-dap-virtual-text").setup()
+
 	require'lspconfig'.pyright.setup{}
 
 	require'lspconfig'.volar.setup{}
@@ -763,17 +775,17 @@ augroup mygroup
 augroup end
 
 " vimspector key bindings
-nnoremap <Leader>dd :call vimspector#Launch()<CR>
-nnoremap <Leader>de :call vimspector#Reset()<CR>
-nnoremap <Leader>dc :call vimspector#Continue()<CR>
+" nnoremap <Leader>dd :call vimspector#Launch()<CR>
+" nnoremap <Leader>de :call vimspector#Reset()<CR>
+" nnoremap <Leader>dc :call vimspector#Continue()<CR>
 
-nnoremap <Leader>dt :call vimspector#ToggleBreakpoint()<CR>
-nnoremap <Leader>dT :call vimspector#ClearBreakpoints()<CR>
+" nnoremap <Leader>dt :call vimspector#ToggleBreakpoint()<CR>
+" nnoremap <Leader>dT :call vimspector#ClearBreakpoints()<CR>
 
-nmap <Leader>dk <Plug>VimspectorRestart
-nmap <Leader>dh <Plug>VimspectorStepOut
-nmap <Leader>dl <Plug>VimspectorStepInto
-nmap <Leader>dj <Plug>VimspectorStepOver
+" nmap <Leader>dk <Plug>VimspectorRestart
+" nmap <Leader>dh <Plug>VimspectorStepOut
+" nmap <Leader>dl <Plug>VimspectorStepInto
+" nmap <Leader>dj <Plug>VimspectorStepOver
 
 autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
