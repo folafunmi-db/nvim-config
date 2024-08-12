@@ -465,6 +465,8 @@ lua << EOF
 
 	require("nvim-dap-virtual-text").setup()
 
+	require'lspconfig'.gleam.setup{}
+
 	require'lspconfig'.pyright.setup{}
 
 	require'lspconfig'.volar.setup{}
