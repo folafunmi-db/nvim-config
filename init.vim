@@ -132,6 +132,8 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 
+Plug 'wojciech-kulik/xcodebuild.nvim'
+
 call plug#end()
 
 " use space as leader
@@ -403,6 +405,9 @@ lua <<EOF
   --     { name = 'cmdline' }
   --   })
   -- })
+
+	-- xcodebuild/swift
+	require("xcodebuild").setup({})
 
 	-- sourcegraph
 	require("sg").setup()
