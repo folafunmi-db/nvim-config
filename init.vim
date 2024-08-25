@@ -351,8 +351,9 @@ nnoremap <leader>wa <cmd>lua require('telescope').extensions.git_worktree.create
 
 lua <<EOF
   -- Set up nvim-cmp.
-  -- local cmp = require'cmp'
+  local cmp = require'cmp'
 
+	cmp.setup({})
   -- cmp.setup({
   --   snippet = {
   --     expand = function(args)
@@ -446,12 +447,12 @@ lua <<EOF
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-	 require('lspconfig').elixirls.setup {
-			-- cmd = { "elixir-ls" },
-			on_attach = on_attach,
-			capabilities = capabilities,
-			filetypes = { "elixir", "eelixir", "heex", "surface", "exs", "lock"}
-	 }
+	require('lspconfig').elixirls.setup {
+		-- cmd = { "elixir-ls" },
+		on_attach = on_attach,
+		capabilities = capabilities,
+		filetypes = { "elixir", "eelixir", "heex", "surface", "exs", "lock"}
+	}
 	
 	-- credo tends to slow down nvim
 	require("elixir").setup({
@@ -555,8 +556,12 @@ lua << EOF
 	end
 
 	 -- rust_analyzer lspconfig
+	 capabilities = require('cmp_nvim_lsp').default_capabilities(),
+
 	 require('lspconfig')['rust_analyzer'].setup{
-		on_attach = on_attach,
+		capabilities = capabilities,
+		-- on_attach = on_attach,
+		on_attach = nil,
 		flags = lsp_flags,
 		cmd = {
 			"rustup", "run", "stable", "rust-analyzer",
