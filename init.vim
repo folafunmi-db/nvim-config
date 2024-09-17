@@ -14,22 +14,22 @@
 :set nowrap
 :set autowriteall
 
-" :set fold
-
-:set foldcolumn=4
-" :set foldmethod=indent
-:set foldenable
-:set foldlevel=99
-:set foldminlines=1
-:set foldnestmax=3
+" Folding Settings
+set foldcolumn=4
+set foldenable
+set foldlevel=99
+set foldminlines=1
+set foldnestmax=3
 
 :set background=dark
 :set colorcolumn=100
-:set clipboard+=unnamedplus
-:set updatetime=300
 
-" use globalstatus line
-" :set laststatus=3
+" Visual Settings
+set background=dark
+set colorcolumn=100
+set clipboard+=unnamedplus
+set updatetime=300
+
 " make the of the window separator same as bg so the line looks thin
 " :highlight WinSeparator guibg=None
 
@@ -90,7 +90,7 @@ Plug 'https://github.com/vim-airline/vim-airline' " Status bar
 Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
 Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
 Plug 'https://github.com/ryanoasis/vim-devicons' " Developer Icons
-Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+" Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
 Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion
@@ -144,10 +144,6 @@ Plug 'zbirenbaum/copilot.lua'
 
 " Yay, pass source=true if you want to build from source
 Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
-
-"autocmd! User avante.nvim lua << EOF
-"	require('avante_lib').load()
-"EOF
 
 call plug#end()
 
@@ -815,4 +811,14 @@ augroup end
 " nmap <Leader>dj <Plug>VimspectorStepOver
 
 autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+
+autocmd! User avante.nvim 
+
+lua << EOF
+	require('avante_lib').load()
+	require('avante').setup ({
+		-- Your config here!
+	})
+EOF
+
 
