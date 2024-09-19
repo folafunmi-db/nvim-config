@@ -45,6 +45,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 " Plug 'luk400/vim-jukit'
+Plug 'startup-nvim/startup.nvim'
 Plug 'ziglang/zig.vim'
 Plug 'sebdah/vim-delve'
 Plug 'sourcegraph/sg.nvim', { 'do': 'nvim -l build/init.lua' }
@@ -362,6 +363,9 @@ nnoremap <leader>wa <cmd>lua require('telescope').extensions.git_worktree.create
 " :highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
 
 lua <<EOF
+
+	require"startup".setup()
+
   -- Set up nvim-cmp.
   local cmp = require'cmp'
 
