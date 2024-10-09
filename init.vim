@@ -45,6 +45,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 " Plug 'luk400/vim-jukit'
+Plug 'sindrets/diffview.nvim'
 Plug 'startup-nvim/startup.nvim'
 Plug 'ziglang/zig.vim'
 Plug 'sebdah/vim-delve'
@@ -315,7 +316,11 @@ nnoremap <leader>h :tabprevious <CR>
 :nnoremap <silent> <CR> :nohlsearch<CR><CR>
 
 " For window maximizer
-nnoremap <silent> <leader>w :MaximizerToggle<CR>
+nnoremap <silent> <leader>ww :MaximizerToggle<CR>
+
+" For Diff Viewer
+nnoremap <silent> <leader>dv :DiffviewOpen<CR>
+nnoremap <silent> <leader>dc :DiffviewClose<CR>
 
 " For moving lines up and down
 let g:move_key_modifier = 'S'
