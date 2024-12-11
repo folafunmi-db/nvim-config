@@ -49,7 +49,7 @@ Plug 'sindrets/diffview.nvim'
 Plug 'startup-nvim/startup.nvim'
 Plug 'ziglang/zig.vim'
 Plug 'sebdah/vim-delve'
-Plug 'sourcegraph/sg.nvim', { 'do': 'nvim -l build/init.lua' }
+" Plug 'sourcegraph/sg.nvim', { 'do': 'nvim -l build/init.lua' }
 Plug 'mbbill/undotree'
 " Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 Plug 'yaegassy/coc-intelephense', {'do': 'yarn install --frozen-lockfile'}
@@ -431,7 +431,7 @@ lua <<EOF
 	require("xcodebuild").setup({})
 
 	-- sourcegraph
-	require("sg").setup()
+	-- require("sg").setup()
 
 	-- git-worktree setup
 	require("git-worktree").setup()
