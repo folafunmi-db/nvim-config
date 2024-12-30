@@ -773,13 +773,13 @@ lua << EOF
 
 	local Terminal  = require('toggleterm.terminal').Terminal
 
-  local lazygit = Terminal:new({ cmd = "lazygit", dir = "git_dir", hidden = true })
+  -- local lazygit = Terminal:new({ cmd = "lazygit", dir = "git_dir", hidden = true })
 
-	function _LAZYGIT_TOGGLE()
-		lazygit:toggle()
-	end
+	-- function _LAZYGIT_TOGGLE()
+		-- lazygit:toggle()
+	-- end
 
-	vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", {noremap = true, silent = true})
+	-- vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", {noremap = true, silent = true})
 
 	function _G.set_terminal_keymaps()
 	  local opts = {buffer = 0}
@@ -824,6 +824,15 @@ autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.org
 autocmd! User avante.nvim 
 
 lua << EOF
+	require('img-clip').setup ({
+		-- use recommended settings from above
+	})
+	require('copilot').setup ({
+		-- use recommended settings from above
+	})
+	-- require('render-markdown').setup ({
+		-- use recommended settings from above
+	-- })
 	require('avante_lib').load()
 	require('avante').setup ({})
 EOF
