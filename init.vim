@@ -834,7 +834,10 @@ lua << EOF
 		-- use recommended settings from above
 	-- })
 	require('avante_lib').load()
-	require('avante').setup ({})
+	require('avante').setup ({
+		behaviour = {
+			auto_suggestions = false,
+		}
+	})
 EOF
-
 
