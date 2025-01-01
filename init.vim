@@ -773,13 +773,13 @@ lua << EOF
 
 	local Terminal  = require('toggleterm.terminal').Terminal
 
-  -- local lazygit = Terminal:new({ cmd = "lazygit", dir = "git_dir", hidden = true })
+  local lazygit = Terminal:new({ cmd = "lazygit", dir = "git_dir", hidden = true })
 
-	-- function _LAZYGIT_TOGGLE()
-		-- lazygit:toggle()
-	-- end
+	function _LAZYGIT_TOGGLE()
+		lazygit:toggle()
+	end
 
-	-- vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", {noremap = true, silent = true})
+	vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", {noremap = true, silent = true})
 
 	function _G.set_terminal_keymaps()
 	  local opts = {buffer = 0}
