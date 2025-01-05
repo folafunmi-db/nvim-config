@@ -142,7 +142,8 @@ Plug 'MunifTanjim/nui.nvim'
 " Optional deps
 Plug 'nvim-tree/nvim-web-devicons' "or Plug 'echasnovski/mini.icons'
 Plug 'HakonHarnes/img-clip.nvim'
-Plug 'zbirenbaum/copilot.lua'
+" Plug 'zbirenbaum/copilot.lua'
+Plug 'github/copilot.vim'
 
 " Yay, pass source=true if you want to build from source
 Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
@@ -826,9 +827,9 @@ lua << EOF
 	require('img-clip').setup ({
 		-- use recommended settings from above
 	})
-	require('copilot').setup ({
+	-- require('copilot').setup ({
 		-- use recommended settings from above
-	})
+	-- })
 	-- require('render-markdown').setup ({
 		-- use recommended settings from above
 	-- })
