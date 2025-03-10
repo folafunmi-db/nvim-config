@@ -45,6 +45,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 " Plug 'luk400/vim-jukit'
+Plug 'augmentcode/augment.vim'
 Plug 'sindrets/diffview.nvim'
 Plug 'startup-nvim/startup.nvim'
 Plug 'ziglang/zig.vim'
