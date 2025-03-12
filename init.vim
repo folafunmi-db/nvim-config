@@ -15,11 +15,11 @@
 :set autowriteall
 
 " Folding Settings
-set foldcolumn=4
-set foldenable
-set foldlevel=99
-set foldminlines=1
-set foldnestmax=3
+" set foldcolumn=4
+" set foldenable
+" set foldlevel=99
+" set foldminlines=1
+" set foldnestmax=3
 
 :set background=dark
 :set colorcolumn=100
@@ -45,6 +45,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 " Plug 'luk400/vim-jukit'
+Plug 'kevinhwang91/nvim-ufo'
+Plug 'kevinhwang91/promise-async'
 Plug 'augmentcode/augment.vim'
 Plug 'sindrets/diffview.nvim'
 Plug 'startup-nvim/startup.nvim'
@@ -743,24 +745,22 @@ lua << EOF
 		zindex = 20, -- The Z-index of the context window
 		on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
 	}
-
 	
 	vim.keymap.set("n", "[c", function()
 		require("treesitter-context").go_to_context(vim.v.count1)
 	end, { silent = true })
+	
+	vim.o.foldcolumn = '1' -- '0' is not bad
+	vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+	vim.o.foldlevelstart = 99
+	vim.o.foldenable = true
 
-	vim.api.nvim_create_autocmd({ "FileType" }, {
-		callback = function()
-			if require("nvim-treesitter.parsers").has_parser() then
-				vim.opt.foldmethod = "expr"
-				vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-				vim.opt.foldenable = false
-			else
-				vim.opt.foldmethod = "syntax"
-				vim.opt.foldenable = false
-			end
-		end,
-	})
+	-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+	vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+	vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+
+	require('ufo').setup()
+
 EOF
 
 lua << EOF
