@@ -693,6 +693,8 @@ lua << EOF
 	vim.opt.list = true
 	-- vim.opt.listchars:append "eol:↴"
   vim.opt.listchars:append "space:⋅"
+	-- views can only be fully collapsed with the global statusline
+	vim.opt.laststatus = 3
 
 	-- colorizer config
 	require'colorizer'.setup()
