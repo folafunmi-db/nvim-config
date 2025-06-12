@@ -223,6 +223,14 @@ nmap <C-b> :Neotree filesystem toggle reveal float<CR>
 nmap <leader>j :Neotree filesystem toggle reveal float<CR>
 " nmap <leader>j :Telescope file_browser<CR>
 
+" debugger
+nmap <leader>1 :lua require'dap'.toggle_breakpoint()<CR>
+nmap <leader>2 :lua require'dap'.continue()<CR>
+nmap <leader>3 :lua require'dap'.step_over()<CR>
+nmap <leader>4 :lua require'dap'.step_into()<CR>
+
+nmap <leader>5 :lua require'dapui'.toggle()<CR>
+
 " Preserve scroll position when switching between buffers
 au BufLeave * if !&diff | let b:winview = winsaveview() | endif
 au BufEnter * if exists('b:winview') && !&diff | call winrestview(b:winview) | unlet! b:winview | endif
