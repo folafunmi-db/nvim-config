@@ -45,6 +45,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 " Plug 'luk400/vim-jukit'
+Plug 'pwntester/octo.nvim'
 Plug 'kevinhwang91/nvim-ufo'
 Plug 'kevinhwang91/promise-async'
 Plug 'augmentcode/augment.vim'
@@ -382,6 +383,9 @@ nnoremap <leader>wa <cmd>lua require('telescope').extensions.git_worktree.create
 lua <<EOF
 
 	require"startup".setup()
+
+	-- Set up Octo.nvim
+	require"octo".setup()
 
   -- Set up nvim-cmp.
   local cmp = require'cmp'
