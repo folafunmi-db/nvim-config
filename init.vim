@@ -225,8 +225,8 @@ nmap <leader>j :Neotree filesystem toggle reveal float<CR>
 
 " debugger
 nmap <leader>1 :lua require'dap'.toggle_breakpoint()<CR>
-nmap <leader>2 :lua require'dap'.continue()<CR>
 nmap <leader>3 :lua require'dap'.step_over()<CR>
+nmap <leader>2 :lua require'dap'.continue()<CR>
 nmap <leader>4 :lua require'dap'.step_into()<CR>
 
 nmap <leader>5 :lua require'dapui'.toggle()<CR>
@@ -839,7 +839,7 @@ lua << EOF
 		-- use recommended settings from above
 	})
 	-- require('copilot').setup ({
-		-- use recommended settings from above
+	 -- use recommended settings from above
 	-- })
 	-- require('render-markdown').setup ({
 		-- use recommended settings from above
