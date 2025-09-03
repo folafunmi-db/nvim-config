@@ -45,6 +45,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 " Plug 'luk400/vim-jukit'
+Plug 'udalov/kotlin-vim'
 Plug 'pwntester/octo.nvim'
 Plug 'kevinhwang91/nvim-ufo'
 Plug 'kevinhwang91/promise-async'
@@ -505,6 +506,8 @@ lua << EOF
 
 	require("nvim-dap-virtual-text").setup()
 
+	require'lspconfig'.kotlin_language_server.setup({})
+
 	require'lspconfig'.gleam.setup{}
 
 	require'lspconfig'.pyright.setup{}
@@ -724,9 +727,13 @@ lua << EOF
 				"html",
 				"css",
 				"go",
+				"python",
+				"typescript",
+				"javascript",
 				"rust",
 				"json",
 				"lua",
+				"kotlin",
 		},
 		autotag = {
 			enable = true,
