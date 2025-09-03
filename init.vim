@@ -49,14 +49,11 @@ Plug 'udalov/kotlin-vim'
 Plug 'pwntester/octo.nvim'
 Plug 'kevinhwang91/nvim-ufo'
 Plug 'kevinhwang91/promise-async'
-Plug 'augmentcode/augment.vim'
 Plug 'sindrets/diffview.nvim'
 Plug 'startup-nvim/startup.nvim'
 Plug 'ziglang/zig.vim'
 Plug 'sebdah/vim-delve'
-" Plug 'sourcegraph/sg.nvim', { 'do': 'nvim -l build/init.lua' }
 Plug 'mbbill/undotree'
-" Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 Plug 'yaegassy/coc-intelephense', {'do': 'yarn install --frozen-lockfile'}
 Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 Plug 'elixir-tools/elixir-tools.nvim'
