@@ -480,7 +480,24 @@ lua <<EOF
 
 	require("mason").setup()
 
-	require("mason-lspconfig").setup()
+	require("mason-lspconfig").setup({
+		automatic_enable = false
+		-- automatic_enable = {
+		-- 	'kotlin_language_server',
+		-- 	'lua_ls',
+		-- 	'go',
+		-- 	'html',
+		-- 	'css',
+		-- 	'ts_ls',
+		-- 	'vue_ls',
+		-- 	'svelte',
+		-- 	'tailwindcss',
+		-- 	'typescript',
+		-- 	'javascript',
+		-- 	'rust_analyzer',
+		-- 	'elixir'
+		-- }
+	})
 
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
