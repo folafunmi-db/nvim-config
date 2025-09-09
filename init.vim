@@ -120,7 +120,7 @@ Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'mxsdev/nvim-dap-vscode-js'
 Plug 'microsoft/vscode-js-debug', {'do': 'yarn install && npx gulp vsDebugServerBundle && mv dist out'}
 
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tux-navigator'
 Plug 'leafOfTree/vim-svelte-plugin'
 
 " auto-completion
@@ -312,10 +312,10 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Remap keys for switching panes
-nmap <silent> <c-k> :wincmd k<CR>
-nmap <silent> <c-j> :wincmd j<CR>
-nmap <silent> <c-h> :wincmd h<CR>
-nmap <silent> <c-l> :wincmd l<CR>
+nmap <silent> <c-K> :wincmd k<CR>
+nmap <silent> <c-J> :wincmd j<CR>
+nmap <silent> <c-H> :wincmd h<CR>
+nmap <silent> <c-L> :wincmd l<CR>
 
 " Split panes
 nnoremap <leader>s :split <CR>
