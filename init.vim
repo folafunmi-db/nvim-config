@@ -149,6 +149,9 @@ Plug 'github/copilot.vim'
 
 " Yay, pass source=true if you want to build from source
 Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
+Plug 'NickvanDyke/opencode.nvim'
+Plug 'folke/snacks.nvim'
+Plug 'folke/which-key.nvim'
 
 call plug#end()
 
@@ -375,10 +378,38 @@ nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>wr <cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>
 nnoremap <leader>wa <cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>
 
+" Opencode
+" Toggle opencode
+nnoremap <leader>8t <cmd>lua require('opencode').toggle()<cr>
+
+" Ask opencode
+nnoremap <leader>8A <cmd>lua require('opencode').ask()<cr>
+nnoremap <leader>8a <cmd>lua require('opencode').ask('@cursor: ')<cr>
+vnoremap <leader>8a <cmd>lua require('opencode').ask('@selection: ')<cr>
+
+" New opencode session
+nnoremap <leader>8n <cmd>lua require('opencode').command('session_new')<cr>
+
+" Copy last opencode response
+nnoremap <leader>8y <cmd>lua require('opencode').command('messages_copy')<cr>
+
+" Messages half page up/down
+nnoremap <S-C-u> <cmd>lua require('opencode').command('messages_half_page_up')<cr>
+nnoremap <S-C-d> <cmd>lua require('opencode').command('messages_half_page_down')<cr>
+
+" Select opencode prompt (works in normal + visual mode)
+nnoremap <leader>8s <cmd>lua require('opencode').select()<cr>
+vnoremap <leader>8s <cmd>lua require('opencode').select()<cr>
+
+" Custom prompt example
+nnoremap <leader>8e <cmd>lua require('opencode').prompt('Explain @cursor and its context')<cr>
+
+
 " make the line numbers standout
 " :highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=White guibg=NONE
 
 lua <<EOF
+
 
 	require"startup".setup()
 
@@ -547,7 +578,7 @@ lua << EOF
 	})
 
 	require("rust-tools").setup({
-		server = {
+		server =  {
 			on_attach = function(_, bufnr)
 				-- Hover actions
 				 vim.keymap.set("n", "<leader>i", rt.hover_actions.hover_actions, { buffer = bufnr })
