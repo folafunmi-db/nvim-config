@@ -1,4 +1,4 @@
-:set i
+:set ic
 :set noscs
 :set relativenumber
 :set number
