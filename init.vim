@@ -380,29 +380,29 @@ nnoremap <leader>wa <cmd>lua require('telescope').extensions.git_worktree.create
 
 " Opencode
 " Toggle opencode
-nnoremap <leader>8t <cmd>lua require('opencode').toggle()<cr>
+nnoremap <silent> <leader>8t <cmd>lua require('opencode').toggle()<cr>
 
 " Ask opencode
-nnoremap <leader>8A <cmd>lua require('opencode').ask()<cr>
-nnoremap <leader>8a <cmd>lua require('opencode').ask('@cursor: ')<cr>
-vnoremap <leader>8a <cmd>lua require('opencode').ask('@selection: ')<cr>
+nnoremap <silent> <leader>8A <cmd>lua require('opencode').ask()<cr>
+nnoremap <silent> <leader>8a <cmd>lua require('opencode').ask('@cursor: ')<cr>
+vnoremap <silent> <leader>8a <cmd>lua require('opencode').ask('@selection: ')<cr>
 
 " New opencode session
-nnoremap <leader>8n <cmd>lua require('opencode').command('session_new')<cr>
+nnoremap <silent> <leader>8n <cmd>lua require('opencode').command('session_new')<cr>
 
 " Copy last opencode response
-nnoremap <leader>8y <cmd>lua require('opencode').command('messages_copy')<cr>
+nnoremap <silent> <leader>8y <cmd>lua require('opencode').command('messages_copy')<cr>
 
 " Messages half page up/down
-nnoremap <S-C-u> <cmd>lua require('opencode').command('messages_half_page_up')<cr>
-nnoremap <S-C-d> <cmd>lua require('opencode').command('messages_half_page_down')<cr>
+nnoremap <silent> <S-C-u> <cmd>lua require('opencode').command('messages_half_page_up')<cr>
+nnoremap <silent> <S-C-d> <cmd>lua require('opencode').command('messages_half_page_down')<cr>
 
 " Select opencode prompt (works in normal + visual mode)
-nnoremap <leader>8s <cmd>lua require('opencode').select()<cr>
-vnoremap <leader>8s <cmd>lua require('opencode').select()<cr>
+nnoremap <silent> <leader>8s <cmd>lua require('opencode').select()<cr>
+vnoremap <silent> <leader>8s <cmd>lua require('opencode').select()<cr>
 
 " Custom prompt example
-nnoremap <leader>8e <cmd>lua require('opencode').prompt('Explain @cursor and its context')<cr>
+nnoremap <silent> <leader>8e <cmd>lua require('opencode').prompt('Explain @cursor and its context')<cr>
 
 
 " make the line numbers standout
