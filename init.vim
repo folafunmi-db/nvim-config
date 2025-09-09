@@ -1,4 +1,4 @@
-:set ic
+:set i
 :set noscs
 :set relativenumber
 :set number
@@ -120,7 +120,7 @@ Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'mxsdev/nvim-dap-vscode-js'
 Plug 'microsoft/vscode-js-debug', {'do': 'yarn install && npx gulp vsDebugServerBundle && mv dist out'}
 
-Plug 'christoomey/vim-tux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'leafOfTree/vim-svelte-plugin'
 
 " auto-completion
