@@ -43,6 +43,12 @@ return {
     },
   },
 
+  -- Tmux integration for seamless navigation
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false, -- Load immediately to ensure tmux navigation works
+  },
+
   -- Copilot
   {
     "github/copilot.vim",
