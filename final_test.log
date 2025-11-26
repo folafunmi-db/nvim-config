@@ -1,0 +1,260 @@
+--- Startup times for process: Primary (or UI client) ---
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.000  000.000: --- NVIM STARTING ---
+000.152  000.152: event init
+000.434  000.283: early init
+001.384  000.950: locale set
+001.406  000.022: init first window
+001.996  000.590: inits 1
+002.013  000.017: window checked
+002.015  000.002: parsing arguments
+002.499  000.026  000.026: require('vim.shared')
+002.552  000.020  000.020: require('vim.inspect')
+002.576  000.019  000.019: require('vim._options')
+002.577  000.076  000.036: require('vim._editor')
+002.578  000.122  000.021: require('vim._init_packages')
+002.579  000.442: init lua interpreter
+004.356  001.777: expanding arguments
+004.364  000.009: inits 2
+004.529  000.165: init highlight
+004.542  000.013: clear screen
+004.615  000.006  000.006: require('vim.keymap')
+005.523  000.170  000.170: sourcing nvim_exec2()
+005.636  001.093  000.917: require('vim._defaults')
+005.637  000.003: init default mappings & autocommands
+006.972  000.318  000.318: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/ftplugin.vim
+007.410  000.264  000.264: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/indent.vim
+009.243  001.223  001.223: require('config.options')
+009.712  000.466  000.466: require('config.keymaps')
+011.705  001.991  001.991: require('config.autocmds')
+012.193  000.487  000.487: require('lazy')
+012.231  000.027  000.027: require('ffi')
+012.268  000.025  000.025: require('vim.fs')
+012.638  000.368  000.368: require('vim.uri')
+012.645  000.413  000.019: require('vim.loader')
+013.127  000.461  000.461: require('lazy.stats')
+013.613  000.453  000.453: require('lazy.core.util')
+013.966  000.352  000.352: require('lazy.core.config')
+014.488  000.226  000.226: require('lazy.core.handler')
+016.828  000.247  000.247: require('lazy.pkg')
+016.831  002.065  001.818: require('lazy.core.meta')
+016.835  002.346  000.281: require('lazy.core.plugin')
+016.843  002.876  000.304: require('lazy.core.loader')
+018.101  000.190  000.190: require('lazy.async')
+018.765  000.239  000.239: require('lazy.manage.process')
+018.967  000.201  000.201: require('lazy.terminal')
+018.970  000.868  000.428: require('lazy.manage.task')
+018.972  001.288  000.230: require('lazy.manage.runner')
+018.974  001.542  000.253: require('lazy.manage')
+018.976  001.791  000.249: require('lazy.view.commands')
+019.173  000.181  000.181: require('lazy.core.fragments')
+021.788  000.439  000.439: require('lazy.core.handler.cmd')
+022.052  000.259  000.259: require('lazy.core.handler.keys')
+022.507  000.453  000.453: require('lazy.core.handler.event')
+022.787  000.277  000.277: require('lazy.core.handler.ft')
+025.119  000.151  000.151: sourcing /Users/mustaphaf/.config/nvim/ftdetect/astro.vim
+025.163  000.780  000.629: sourcing nvim_exec2() called at /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/filetype.lua:0
+025.166  001.084  000.304: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/filetype.lua
+025.175  001.265  000.181: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+025.309  000.003  000.003: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+025.319  000.001  000.001: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+028.890  000.276  000.276: require('tokyonight.config')
+028.891  001.364  001.087: require('tokyonight')
+029.341  000.433  000.433: require('tokyonight.theme')
+030.188  000.275  000.275: require('tokyonight.util')
+030.191  000.505  000.230: require('tokyonight.colors')
+031.057  000.434  000.434: require('tokyonight.hsluv')
+031.792  000.317  000.317: require('tokyonight.groups')
+032.947  005.624  002.571: sourcing /Users/mustaphaf/.local/share/nvim/lazy/tokyonight.nvim/colors/tokyonight-storm.lua
+034.456  000.327  000.327: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/init.vim
+035.232  000.440  000.440: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/parts.vim
+035.660  000.168  000.168: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/formatter/short_path.vim
+036.464  000.234  000.234: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/util.vim
+036.512  003.110  001.940: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/plugin/airline.vim
+036.519  003.253  000.144: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+036.526  000.001  000.001: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+036.533  000.001  000.001: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+037.193  000.250  000.250: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/plugin/editorconfig.lua
+037.197  000.367  000.116: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+037.551  000.243  000.243: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/plugin/man.lua
+037.556  000.356  000.113: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+037.858  000.173  000.173: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/plugin/osc52.lua
+037.866  000.308  000.134: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+038.341  000.343  000.343: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/plugin/rplugin.vim
+038.352  000.482  000.139: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+038.637  000.154  000.154: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/plugin/shada.vim
+038.645  000.289  000.135: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+038.877  000.057  000.057: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/plugin/spellfile.vim
+038.893  000.226  000.169: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+039.013  031.387  007.062: sourcing /Users/mustaphaf/.config/nvim/init.lua
+039.133  001.526: sourcing vimrc file(s)
+039.510  000.186  000.186: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/filetype.lua
+040.142  000.366  000.366: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/tabline/buffers.vim
+040.831  000.148  000.148: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/syntax/synload.vim
+040.894  000.616  000.469: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/syntax/syntax.vim
+040.910  000.608: inits 3
+042.650  001.740: reading ShaDa
+043.461  000.588  000.588: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions.vim
+043.818  000.205  000.205: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/quickfix.vim
+044.166  000.218  000.218: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline.vim
+044.597  000.247  000.247: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/term.vim
+045.877  000.516  000.516: require('vim.lsp.log')
+046.860  000.977  000.977: require('vim.lsp.protocol')
+047.303  000.441  000.441: require('vim.lsp.util')
+047.891  000.285  000.285: require('vim.lsp.sync')
+047.894  000.589  000.305: require('vim.lsp._changetracking')
+048.537  000.194  000.194: require('vim.lsp._transport')
+048.550  000.655  000.461: require('vim.lsp.rpc')
+048.597  003.857  000.680: require('vim.lsp')
+049.029  000.270  000.270: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/nvimlsp.vim
+049.362  000.176  000.176: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/whitespace.vim
+049.711  000.160  000.160: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/po.vim
+050.012  000.166  000.166: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/wordcount.vim
+050.302  000.122  000.122: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/xkblayout.vim
+050.580  000.147  000.147: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/keymap.vim
+051.056  000.186  000.186: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/searchcount.vim
+053.127  000.172  000.172: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/section.vim
+053.523  000.239  000.239: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/highlighter.vim
+055.477  000.098  000.098: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/themes.vim
+055.659  000.556  000.458: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/themes/dark.vim
+063.857  000.289  000.289: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/builder.vim
+064.634  000.226  000.226: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/default.vim
+070.249  019.775: opening buffers
+070.264  000.015: BufEnter autocommands
+070.265  000.001: editing files in windows
+070.400  000.134: --- NVIM STARTED ---
+
+--- Startup times for process: Primary (or UI client) ---
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.000  000.000: --- NVIM STARTING ---
+000.110  000.110: event init
+000.419  000.309: early init
+001.240  000.821: locale set
+001.261  000.021: init first window
+001.725  000.464: inits 1
+001.743  000.018: window checked
+001.745  000.002: parsing arguments
+002.225  000.025  000.025: require('vim.shared')
+002.275  000.019  000.019: require('vim.inspect')
+002.302  000.023  000.023: require('vim._options')
+002.303  000.076  000.035: require('vim._editor')
+002.304  000.121  000.020: require('vim._init_packages')
+002.305  000.439: init lua interpreter
+004.031  001.726: expanding arguments
+004.039  000.008: inits 2
+004.197  000.158: init highlight
+004.210  000.013: clear screen
+004.280  000.006  000.006: require('vim.keymap')
+005.066  000.166  000.166: sourcing nvim_exec2()
+005.175  000.964  000.792: require('vim._defaults')
+005.176  000.002: init default mappings & autocommands
+005.857  000.176  000.176: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/ftplugin.vim
+006.110  000.130  000.130: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/indent.vim
+007.333  000.843  000.843: require('config.options')
+007.782  000.447  000.447: require('config.keymaps')
+007.940  000.157  000.157: require('config.autocmds')
+008.255  000.314  000.314: require('lazy')
+008.291  000.026  000.026: require('ffi')
+008.326  000.024  000.024: require('vim.fs')
+008.652  000.324  000.324: require('vim.uri')
+008.659  000.367  000.018: require('vim.loader')
+009.028  000.352  000.352: require('lazy.stats')
+009.493  000.435  000.435: require('lazy.core.util')
+009.691  000.197  000.197: require('lazy.core.config')
+010.280  000.297  000.297: require('lazy.core.handler')
+010.960  000.187  000.187: require('lazy.pkg')
+010.964  000.413  000.226: require('lazy.core.meta')
+010.968  000.687  000.274: require('lazy.core.plugin')
+010.974  001.282  000.298: require('lazy.core.loader')
+012.380  000.258  000.258: require('lazy.async')
+012.782  000.203  000.203: require('lazy.manage.process')
+012.961  000.178  000.178: require('lazy.terminal')
+012.964  000.576  000.195: require('lazy.manage.task')
+012.966  001.163  000.329: require('lazy.manage.runner')
+012.968  001.395  000.231: require('lazy.manage')
+012.970  001.591  000.197: require('lazy.view.commands')
+013.138  000.153  000.153: require('lazy.core.fragments')
+015.273  000.347  000.347: require('lazy.core.handler.event')
+015.583  000.299  000.299: require('lazy.core.handler.ft')
+015.800  000.214  000.214: require('lazy.core.handler.cmd')
+016.000  000.178  000.178: require('lazy.core.handler.keys')
+017.497  000.155  000.155: sourcing /Users/mustaphaf/.config/nvim/ftdetect/astro.vim
+017.525  000.533  000.378: sourcing nvim_exec2() called at /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/filetype.lua:0
+017.527  000.653  000.120: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/filetype.lua
+017.534  000.788  000.135: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+017.580  000.001  000.001: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+017.586  000.001  000.001: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+019.825  000.451  000.451: require('tokyonight.config')
+019.827  000.978  000.527: require('tokyonight')
+020.052  000.218  000.218: require('tokyonight.theme')
+020.544  000.198  000.198: require('tokyonight.util')
+020.546  000.398  000.201: require('tokyonight.colors')
+021.108  000.289  000.289: require('tokyonight.hsluv')
+021.773  000.230  000.230: require('tokyonight.groups')
+022.719  004.087  001.974: sourcing /Users/mustaphaf/.local/share/nvim/lazy/tokyonight.nvim/colors/tokyonight-storm.lua
+023.701  000.225  000.225: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/init.vim
+024.349  000.387  000.387: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/parts.vim
+024.673  000.159  000.159: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/formatter/short_path.vim
+025.410  000.233  000.233: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/util.vim
+025.459  002.515  001.512: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/plugin/airline.vim
+025.467  002.608  000.093: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+025.482  000.001  000.001: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+025.489  000.001  000.001: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+025.934  000.215  000.215: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/plugin/editorconfig.lua
+025.941  000.307  000.092: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+026.523  000.268  000.268: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/plugin/man.lua
+026.528  000.584  000.315: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+026.777  000.159  000.159: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/plugin/osc52.lua
+026.784  000.253  000.094: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+027.112  000.224  000.224: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/plugin/rplugin.vim
+027.119  000.330  000.106: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+027.344  000.110  000.110: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/plugin/shada.vim
+027.352  000.229  000.118: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+027.522  000.051  000.051: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/plugin/spellfile.vim
+027.528  000.158  000.108: sourcing nvim_exec2() called at /Users/mustaphaf/.config/nvim/init.lua:0
+027.609  021.369  004.819: sourcing /Users/mustaphaf/.config/nvim/init.lua
+027.616  000.765: sourcing vimrc file(s)
+027.823  000.079  000.079: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/filetype.lua
+028.238  000.262  000.262: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/tabline/buffers.vim
+028.660  000.118  000.118: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/syntax/synload.vim
+028.712  000.398  000.280: sourcing /opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/syntax/syntax.vim
+028.725  000.370: inits 3
+030.216  001.491: reading ShaDa
+030.786  000.409  000.409: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions.vim
+031.204  000.298  000.298: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/quickfix.vim
+031.547  000.228  000.228: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline.vim
+031.903  000.176  000.176: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/term.vim
+032.940  000.348  000.348: require('vim.lsp.log')
+033.752  000.809  000.809: require('vim.lsp.protocol')
+034.227  000.473  000.473: require('vim.lsp.util')
+034.721  000.250  000.250: require('vim.lsp.sync')
+034.725  000.495  000.246: require('vim.lsp._changetracking')
+035.354  000.173  000.173: require('vim.lsp._transport')
+035.362  000.636  000.462: require('vim.lsp.rpc')
+035.414  003.374  000.613: require('vim.lsp')
+035.755  000.204  000.204: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/nvimlsp.vim
+036.082  000.181  000.181: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/whitespace.vim
+036.408  000.159  000.159: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/po.vim
+036.717  000.173  000.173: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/wordcount.vim
+037.004  000.134  000.134: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/xkblayout.vim
+037.264  000.139  000.139: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/keymap.vim
+037.631  000.142  000.142: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/searchcount.vim
+039.639  000.144  000.144: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/section.vim
+040.052  000.220  000.220: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/highlighter.vim
+041.985  000.098  000.098: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/themes.vim
+042.152  000.522  000.424: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/themes/dark.vim
+049.424  000.230  000.230: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/builder.vim
+049.820  000.170  000.170: sourcing /Users/mustaphaf/.local/share/nvim/lazy/vim-airline/autoload/airline/extensions/default.vim
+055.264  018.144: opening buffers
+055.292  000.028: BufEnter autocommands
+055.294  000.002: editing files in windows
+055.415  000.121: --- NVIM STARTED ---
+
