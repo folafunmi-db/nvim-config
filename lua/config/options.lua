@@ -38,11 +38,8 @@ opt.writebackup = false
 opt.shortmess:append("c")
 opt.signcolumn = "yes"
 
--- Folding
-opt.foldcolumn = "1"
-opt.foldlevel = 99
-opt.foldlevelstart = 99
-opt.foldenable = true
+-- Folding (handled by nvim-ufo with treesitter)
+-- Basic folding options are set in nvim-ufo plugin config
 
 -- Performance
 opt.laststatus = 3
