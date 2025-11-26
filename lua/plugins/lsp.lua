@@ -7,6 +7,7 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
+      "b0o/schemastore.nvim",
     },
     config = function()
       require("config.lsp")
@@ -21,6 +22,33 @@ return {
     config = function()
       require("mason").setup()
     end,
+  },
+
+  -- Mason LSP Config (auto-install LSP servers)
+  {
+    "williamboman/mason-lspconfig.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "williamboman/mason.nvim" },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "ts_ls",       -- TypeScript/JavaScript
+          "html",        -- HTML
+          "cssls",       -- CSS
+          "tailwindcss", -- Tailwind CSS
+          "eslint",      -- ESLint
+          "jsonls",      -- JSON
+          "emmet_ls",    -- Emmet
+        },
+        automatic_installation = true,
+      })
+    end,
+  },
+
+  -- JSON Schemas for jsonls
+  {
+    "b0o/schemastore.nvim",
+    lazy = true,
   },
 
   -- Completion (only when typing)
