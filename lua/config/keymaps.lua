@@ -20,8 +20,9 @@ keymap("n", "<leader>h", ":tabprevious<CR>")
 keymap("n", "<CR>", ":nohlsearch<CR><CR>", { silent = true })
 
 -- Use very magic mode for search
-keymap("n", "/", "/\v")
-keymap("c", "%s/", "%s/\v")
+keymap("n", "/", "/\\v", { silent = false })
+keymap("n", "?", "?\\v", { silent = false })
+keymap("c", "%s/", "%s/\\v")
 
 -- Better escape in insert and visual mode
 keymap("i", "<C-[>", "<Esc>")
