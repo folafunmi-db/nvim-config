@@ -49,6 +49,26 @@ return {
     event = "InsertEnter",
   },
 
+  -- Code action menu (enhanced LSP code actions)
+  {
+    "weilbith/nvim-code-action-menu",
+    keys = {
+      { "<C-i>", "<cmd>CodeActionMenu<cr>", desc = "Code Action Menu" },
+      { "<leader>i", "<cmd>CodeActionMenu<cr>", desc = "Code Action Menu" },
+    },
+  },
+
+  -- Light bulb for code actions (visual indicator)
+  {
+    "kosayoda/nvim-lightbulb",
+    event = "LspAttach",
+    config = function()
+      require("nvim-lightbulb").setup({
+        autocmd = { enabled = true }
+      })
+    end,
+  },
+
   -- OpenCode integration
   {
     "NickvanDyke/opencode.nvim",

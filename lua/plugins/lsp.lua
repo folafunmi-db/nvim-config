@@ -37,6 +37,7 @@ return {
           "cssls",       -- CSS
           "tailwindcss", -- Tailwind CSS
           "eslint",      -- ESLint
+          "biome",       -- Biome
           "jsonls",      -- JSON
           "emmet_ls",    -- Emmet
         },
@@ -48,7 +49,7 @@ return {
   -- JSON Schemas for jsonls
   {
     "b0o/schemastore.nvim",
-    lazy = true,
+    ft = "json", -- Load when opening JSON files
   },
 
   -- Completion (only when typing)
@@ -71,11 +72,37 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert({
+          -- Tab completion (matching coc.nvim behavior)
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          
+          -- Scroll docs
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          
+          -- Trigger completion (matching coc <C-Space>)
           ["<C-Space>"] = cmp.mapping.complete(),
+          
+          -- Abort completion
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          
+          -- Confirm selection (matching coc behavior)
+          ["<CR>"] = cmp.mapping.confirm({ 
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false -- Only confirm explicitly selected items
+          }),
         }),
         sources = {
           { name = "nvim_lsp" },
