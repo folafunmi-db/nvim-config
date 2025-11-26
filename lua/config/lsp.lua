@@ -63,30 +63,6 @@ vim.lsp.config("ts_ls", {
   }
 })
 
--- ESLint configuration
-vim.lsp.enable("eslint")
-vim.lsp.config("eslint", {
-  capabilities = capabilities,
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx",
-  },
-  settings = {
-    workingDirectories = { mode = "auto" },
-  },
-  on_attach = function(_, bufnr)
-    -- Auto-fix on save
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
-  end,
-})
-
 -- Biome configuration
 vim.lsp.enable("biome")
 vim.lsp.config("biome", {
@@ -208,8 +184,34 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.buf.format({ async = true })
     end, opts)
     
+    -- Biome-specific: Format and fix all issues
+    vim.keymap.set("n", "<leader>bf", function()
+      -- First format with Biome
+      vim.lsp.buf.format({
+        async = false,
+        filter = function(client)
+          return client.name == "biome"
+        end
+      })
+      -- Then apply code actions for fixes
+      vim.lsp.buf.code_action({
+        filter = function(action)
+          return action.kind == "source.fixAll.biome"
+        end,
+        apply = true,
+      })
+    end, { buffer = ev.buf, silent = true, desc = "Biome format and fix all" })
+    
     -- Organize imports (for TypeScript/JavaScript files)
     vim.keymap.set("n", "<leader>oi", function()
+      -- Try Biome organize imports first (if available)
+      vim.lsp.buf.code_action({
+        filter = function(action)
+          return action.kind == "source.organizeImports.biome"
+        end,
+        apply = true,
+      })
+      -- Fallback to TypeScript organize imports
       vim.lsp.buf.execute_command({
         command = "_typescript.organizeImports",
         arguments = {vim.api.nvim_buf_get_name(0)}

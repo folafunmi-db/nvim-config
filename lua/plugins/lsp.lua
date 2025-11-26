@@ -36,8 +36,7 @@ return {
           "html",        -- HTML
           "cssls",       -- CSS
           "tailwindcss", -- Tailwind CSS
-          "eslint",      -- ESLint
-          "biome",       -- Biome
+          "biome",       -- Biome (replaces ESLint)
           "jsonls",      -- JSON
           "emmet_ls",    -- Emmet
         },
