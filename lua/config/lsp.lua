@@ -1,42 +1,27 @@
 -- LSP Configuration
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- Language servers with lazy setup
-local servers = {
-  "ts_ls",
+-- Basic servers that don't need special configuration
+local basic_servers = {
   "gopls",
-  "rust_analyzer",
+  "rust_analyzer", 
   "elixirls",
   "html",
   "cssls",
   "svelte",
-  "tailwindcss",
   "astro",
-  "eslint",
-  "biome",
-  "jsonls",
-  "emmet_ls",
 }
 
--- Basic server configurations
-for _, server in ipairs(servers) do
+-- Setup basic servers
+for _, server in ipairs(basic_servers) do
+  vim.lsp.enable(server)
   vim.lsp.config(server, {
     capabilities = capabilities,
   })
 end
 
--- Special configurations for gopls
-vim.lsp.config("gopls", {
-  capabilities = capabilities,
-  settings = {
-    gopls = {
-      analyses = { unusedparams = true },
-      staticcheck = true,
-    },
-  },
-})
-
 -- TypeScript/JavaScript configuration
+vim.lsp.enable("ts_ls")
 vim.lsp.config("ts_ls", {
   capabilities = capabilities,
   filetypes = {
@@ -79,6 +64,7 @@ vim.lsp.config("ts_ls", {
 })
 
 -- ESLint configuration
+vim.lsp.enable("eslint")
 vim.lsp.config("eslint", {
   capabilities = capabilities,
   filetypes = {
@@ -102,11 +88,12 @@ vim.lsp.config("eslint", {
 })
 
 -- Biome configuration
+vim.lsp.enable("biome")
 vim.lsp.config("biome", {
   capabilities = capabilities,
   filetypes = {
     "javascript",
-    "javascriptreact",
+    "javascriptreact", 
     "javascript.jsx",
     "typescript",
     "typescriptreact",
@@ -114,7 +101,7 @@ vim.lsp.config("biome", {
     "json",
     "jsonc",
   },
-  on_attach = function(client, bufnr)
+  on_attach = function(_, bufnr)
     -- Auto-fix on save using LSP format and code actions
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
@@ -139,11 +126,12 @@ vim.lsp.config("biome", {
 })
 
 -- Emmet configuration for JSX/TSX support
+vim.lsp.enable("emmet_ls")
 vim.lsp.config("emmet_ls", {
   capabilities = capabilities,
   filetypes = {
     "html",
-    "css",
+    "css", 
     "scss",
     "javascript",
     "javascriptreact",
@@ -153,6 +141,7 @@ vim.lsp.config("emmet_ls", {
 })
 
 -- JSON configuration with schema support
+vim.lsp.enable("jsonls")
 vim.lsp.config("jsonls", {
   capabilities = capabilities,
   settings = {
@@ -171,6 +160,7 @@ vim.lsp.config("jsonls", {
 })
 
 -- Tailwind CSS configuration for React
+vim.lsp.enable("tailwindcss")
 vim.lsp.config("tailwindcss", {
   capabilities = capabilities,
   filetypes = {
@@ -195,8 +185,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     
-    -- Hover documentation (matching your gk from coc)
+    -- Hover documentation (using gk instead of K to avoid conflicts)
     vim.keymap.set("n", "gk", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts)
     
     -- Code actions (matching your coc keymaps)
     vim.keymap.set("n", "<C-i>", vim.lsp.buf.code_action, opts)
@@ -206,8 +197,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, opts)
     vim.keymap.set("n", "]g", vim.diagnostic.goto_next, opts)
     
-    -- Signature help
-    vim.keymap.set("n", "K", vim.lsp.buf.signature_help, opts)
+    -- Signature help (removed K mapping to avoid conflict with line movement)
     vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
     
     -- Rename symbol

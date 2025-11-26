@@ -36,3 +36,9 @@ keymap("c", "<C-[>", "<C-C>")
 
 -- Undo mapping
 keymap("n", "<C-z>", "u")
+
+-- Move lines up and down
+keymap("n", "J", ":m .+1<CR>==", { silent = true })
+keymap("n", "K", ":m .-2<CR>==", { silent = true })
+keymap("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+keymap("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
