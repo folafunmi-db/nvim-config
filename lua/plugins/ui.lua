@@ -72,4 +72,98 @@ return {
     "nvim-tree/nvim-web-devicons",
     lazy = true,
   },
+
+  -- Indent lines and paragraph visualization
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require("ibl").setup({
+        indent = {
+          char = "│",
+          tab_char = "│",
+        },
+        scope = {
+          enabled = true,
+          show_start = true,
+          show_end = true,
+        },
+        exclude = {
+          filetypes = {
+            "help",
+            "alpha",
+            "dashboard",
+            "neo-tree",
+            "Trouble",
+            "trouble",
+            "lazy",
+            "mason",
+            "notify",
+            "toggleterm",
+            "lazyterm",
+          },
+        },
+      })
+    end,
+  },
+
+  -- Error lens and diagnostics
+  {
+    "folke/trouble.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
+      { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
+      { "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / references / ... (Trouble)" },
+      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
+      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
+    },
+    config = function()
+      require("trouble").setup({
+        modes = {
+          preview_float = {
+            mode = "diagnostics",
+            preview = {
+              type = "float",
+              relative = "editor",
+              border = "rounded",
+              title = "Preview",
+              title_pos = "center",
+              position = { 0, -2 },
+              size = { width = 0.3, height = 0.3 },
+              zindex = 200,
+            },
+          },
+        },
+      })
+    end,
+  },
+
+  -- Inline diagnostics (error lens)
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require("lsp_lines").setup()
+      
+      -- Disable virtual_text since lsp_lines provides better inline diagnostics
+      vim.diagnostic.config({
+        virtual_text = false,
+        virtual_lines = true,
+      })
+      
+      -- Toggle function for lsp_lines
+      vim.keymap.set("", "<Leader>l", function()
+        local config = vim.diagnostic.config() or {}
+        if config.virtual_text then
+          vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
+        else
+          vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
+        end
+      end, { desc = "Toggle LSP Lines" })
+    end,
+  },
 }
