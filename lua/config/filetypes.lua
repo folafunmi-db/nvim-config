@@ -1,11 +1,15 @@
--- JavaScript and JSX filetype detection
+-- JavaScript, JSX, TypeScript, and TSX filetype detection
 vim.filetype.add({
   extension = {
-    jsx = "javascriptreact",
     js = "javascript",
+    jsx = "javascriptreact",
+    ts = "typescript",
+    tsx = "typescriptreact",
   },
   pattern = {
     [".*%.js"] = "javascript",
     [".*%.jsx"] = "javascriptreact",
+    [".*%.ts"] = "typescript",
+    [".*%.tsx"] = "typescriptreact",
   },
 })
