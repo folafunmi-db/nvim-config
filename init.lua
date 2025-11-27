@@ -23,6 +23,7 @@ vim.opt.rtp:prepend(lazypath)
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
+require("config.filetypes")
 
 -- Setup lazy.nvim with optimized settings
 require("lazy").setup("plugins", {

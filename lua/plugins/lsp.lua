@@ -2,7 +2,7 @@ return {
   -- LSP Configuration (loads only when opening files)
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },  -- Changed to BufReadPost for faster startup
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",

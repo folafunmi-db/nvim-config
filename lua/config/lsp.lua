@@ -1,6 +1,24 @@
 -- LSP Configuration
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+-- Optimize LSP performance for large JSX files
+local function optimize_lsp_for_jsx()
+  -- Reduce diagnostic update frequency
+  vim.lsp.set_log_level("WARN")
+  
+  -- Configure diagnostic options for better performance
+  vim.diagnostic.config({
+    update_in_insert = false,  -- Don't update diagnostics in insert mode
+    severity_sort = true,
+    virtual_text = {
+      spacing = 4,
+      source = "if_many",
+    },
+  })
+end
+
+optimize_lsp_for_jsx()
+
 -- Basic servers that don't need special configuration
 local basic_servers = {
   "gopls",
@@ -23,7 +41,10 @@ end
 -- TypeScript/JavaScript configuration
 vim.lsp.enable("ts_ls")
 vim.lsp.config("ts_ls", {
+  cmd = { vim.fn.stdpath("data") .. "/mason/bin/typescript-language-server", "--stdio" },
   capabilities = capabilities,
+  priority = 10,  -- High priority for go-to-definition
+  root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
   filetypes = {
     "javascript",
     "javascriptreact",
@@ -34,29 +55,38 @@ vim.lsp.config("ts_ls", {
   },
   settings = {
     typescript = {
+      -- Disable inlay hints for better performance in large JSX files
       inlayHints = {
-        includeInlayParameterNameHints = "all",
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
+        includeInlayParameterNameHints = "none",
+        includeInlayFunctionParameterTypeHints = false,
+        includeInlayVariableTypeHints = false,
+      },
+      -- Optimize for large codebases
+      preferences = {
+        includeCompletionsForModuleExports = false,
+        includeCompletionsWithSnippetText = false,
       },
     },
     javascript = {
+      -- Disable inlay hints for better performance in large JSX files
       inlayHints = {
-        includeInlayParameterNameHints = "all",
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
+        includeInlayParameterNameHints = "none",
+        includeInlayFunctionParameterTypeHints = false,
+        includeInlayVariableTypeHints = false,
+      },
+      preferences = {
+        includeCompletionsForModuleExports = false,
+        includeCompletionsWithSnippetText = false,
       },
     },
   },
   commands = {
     OrganizeImports = {
       function()
-        local params = {
-          command = "_typescript.organizeImports",
-          arguments = {vim.api.nvim_buf_get_name(0)},
-          title = ""
-        }
-        vim.lsp.buf.execute_command(params)
+        vim.lsp.buf.code_action({
+          context = { only = { "source.organizeImports" } },
+          apply = true,
+        })
       end,
       description = "Organize Imports"
     }
@@ -67,6 +97,7 @@ vim.lsp.config("ts_ls", {
 vim.lsp.enable("biome")
 vim.lsp.config("biome", {
   capabilities = capabilities,
+  priority = 5,  -- Lower priority (formatting only)
   filetypes = {
     "javascript",
     "javascriptreact", 
@@ -78,24 +109,19 @@ vim.lsp.config("biome", {
     "jsonc",
   },
   on_attach = function(_, bufnr)
-    -- Auto-fix on save using LSP format and code actions
+    -- Auto-format on save (async for better performance)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
       callback = function()
-        -- Format document
+        -- Format document asynchronously
         vim.lsp.buf.format({ 
-          async = false,
+          async = true,  -- Changed to async for better performance
           filter = function(c)
             return c.name == "biome"
           end
         })
-        -- Apply code actions (auto-fix)
-        vim.lsp.buf.code_action({
-          filter = function(action)
-            return action.kind == "source.fixAll.biome"
-          end,
-          apply = true,
-        })
+        -- Skip auto-fix code actions on save to improve performance
+        -- Use <leader>bf for manual format + fix when needed
       end,
     })
   end,
@@ -204,18 +230,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     
     -- Organize imports (for TypeScript/JavaScript files)
     vim.keymap.set("n", "<leader>oi", function()
-      -- Try Biome organize imports first (if available)
+      -- Try code action first (works for both Biome and TypeScript)
       vim.lsp.buf.code_action({
-        filter = function(action)
-          return action.kind == "source.organizeImports.biome"
-        end,
+        context = { only = { "source.organizeImports" } },
         apply = true,
       })
-      -- Fallback to TypeScript organize imports
-      vim.lsp.buf.execute_command({
-        command = "_typescript.organizeImports",
-        arguments = {vim.api.nvim_buf_get_name(0)}
-      })
     end, opts)
+    
+    -- Toggle inlay hints for performance (disabled by default now)
+    vim.keymap.set("n", "<leader>ih", function()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    end, { buffer = ev.buf, silent = true, desc = "Toggle inlay hints" })
   end,
 })
