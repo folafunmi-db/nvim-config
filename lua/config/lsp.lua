@@ -41,7 +41,6 @@ end
 -- TypeScript/JavaScript configuration
 vim.lsp.enable("ts_ls")
 vim.lsp.config("ts_ls", {
-  cmd = { vim.fn.stdpath("data") .. "/mason/bin/typescript-language-server", "--stdio" },
   capabilities = capabilities,
   priority = 10,  -- High priority for go-to-definition
   root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
@@ -53,6 +52,24 @@ vim.lsp.config("ts_ls", {
     "typescriptreact",
     "typescript.tsx",
   },
+  init_options = {
+    hostInfo = "neovim",
+    maxTsServerMemory = 4096,  -- Increase memory limit for large projects
+    locale = "en",
+    preferences = {
+      -- Enable auto-imports
+      includeCompletionsForModuleExports = true,
+      includeCompletionsWithSnippetText = true,
+      -- Auto-import suggestions
+      includeAutomaticOptionalChainCompletions = true,
+      -- JSX preferences
+      jsxAttributeCompletionStyle = "auto",
+      allowTextChangesInNewFiles = true,
+      -- Performance optimizations
+      disableSuggestions = false,
+      quotePreference = "auto",
+    },
+  },
   settings = {
     typescript = {
       -- Disable inlay hints for better performance in large JSX files
@@ -61,11 +78,6 @@ vim.lsp.config("ts_ls", {
         includeInlayFunctionParameterTypeHints = false,
         includeInlayVariableTypeHints = false,
       },
-      -- Optimize for large codebases
-      preferences = {
-        includeCompletionsForModuleExports = false,
-        includeCompletionsWithSnippetText = false,
-      },
     },
     javascript = {
       -- Disable inlay hints for better performance in large JSX files
@@ -73,10 +85,6 @@ vim.lsp.config("ts_ls", {
         includeInlayParameterNameHints = "none",
         includeInlayFunctionParameterTypeHints = false,
         includeInlayVariableTypeHints = false,
-      },
-      preferences = {
-        includeCompletionsForModuleExports = false,
-        includeCompletionsWithSnippetText = false,
       },
     },
   },

@@ -19,9 +19,10 @@ keymap("n", "<leader>s", ":split<CR>")
 keymap("n", "<leader>v", ":vsplit<CR>")
 
 -- Tab motions
-keymap("n", "<leader>t", ":tabnew<CR>")
+keymap("n", "<leader>tt", ":tabnew<CR>")
 keymap("n", "<leader>l", ":tabnext<CR>")
 keymap("n", "<leader>h", ":tabprevious<CR>")
+keymap("n", "<leader>tc", ":tabclose<CR>", { silent = true, desc = "Close current tab" })
 
 -- Clear search highlighting
 keymap("n", "<CR>", ":nohlsearch<CR><CR>", { silent = true })
@@ -55,3 +56,5 @@ keymap("n", "<leader>j", ":m .+1<CR>==", { silent = true, desc = "Move line down
 keymap("n", "<leader>k", ":m .-2<CR>==", { silent = true, desc = "Move line up" })
 keymap("v", "<leader>j", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
 keymap("v", "<leader>k", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selection up" })
+
+-- Jump list navigation (using default <C-o> instead of leader mapping)

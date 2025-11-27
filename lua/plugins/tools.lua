@@ -55,6 +55,34 @@ return {
     event = "InsertEnter",
   },
 
+  -- Conform formatter
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    opts = {
+      format_on_save = function(bufnr)
+        -- disable LSP format to prevent conflicts if you want Biome to be the sole formatter
+        local lsp_format_opt = "never"
+        return { timeout_ms = 500, lsp_format = lsp_format_opt }
+      end,
+      formatters_by_ft = {
+        -- Set Biome as the formatter for tsx, ts, jsx, js, etc.
+        tsx = { "biome" },
+        typescriptreact = { "biome" },
+        typescript= { "biome" },
+        ts = { "biome" },
+        jsx = { "biome" },
+        javascriptreact = { "biome" },
+        javascript= { "biome" },
+        js = { "biome" },
+        json = { "biome" },
+        -- You can also use a fallback for other filetypes
+        -- ["_"] = { "biome" },
+      },
+    },
+  },
+
 
 
   -- OpenCode integration
