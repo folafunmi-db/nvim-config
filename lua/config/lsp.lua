@@ -206,12 +206,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
     
     -- Format document
-    vim.keymap.set("n", "<leader>f", function()
+    vim.keymap.set("n", "<leader>ff", function()
       vim.lsp.buf.format({ async = true })
-    end, opts)
+    end, { buffer = ev.buf, silent = true, desc = "Format document" })
     
     -- Biome-specific: Format and fix all issues
-    vim.keymap.set("n", "<leader>bf", function()
+    vim.keymap.set("n", "<leader>fa", function()
       -- First format with Biome
       vim.lsp.buf.format({
         async = false,
@@ -229,13 +229,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, { buffer = ev.buf, silent = true, desc = "Biome format and fix all" })
     
     -- Organize imports (for TypeScript/JavaScript files)
-    vim.keymap.set("n", "<leader>oi", function()
+    vim.keymap.set("n", "<leader>9", function()
       -- Try code action first (works for both Biome and TypeScript)
       vim.lsp.buf.code_action({
         context = { only = { "source.organizeImports" } },
         apply = true,
       })
-    end, opts)
+    end, { buffer = ev.buf, silent = true, desc = "Organize imports" })
     
     -- Toggle inlay hints for performance (disabled by default now)
     vim.keymap.set("n", "<leader>ih", function()

@@ -7,7 +7,6 @@ return {
       { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "Find files" },
       { "<leader>p", "<cmd>Telescope find_files<cr>", desc = "Find files" },
       { "<C-o>", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
-      { "<leader>o", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
       { "<leader>b", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
     },
     dependencies = {
