@@ -1,0 +1,26 @@
+
+16:07:00.813 [info] Loading 160 CA(s) from :otp store
+
+16:07:01.193 id=1 [debug] handled request client -> server initialize in 268ms
+
+16:07:01.200 [debug] sent notification server -> client window/logMessage
+
+16:07:01.201 [debug] handled notification client -> server textDocument/didOpen in 5ms
+
+16:07:01.201 [debug] handled notification client -> server textDocument/didOpen in 4ms
+
+16:07:01.209 [debug] NextLS v0.23.4 has initialized!
+
+16:07:01.209 [debug] sent notification server -> client window/logMessage
+
+16:07:01.209 [debug] Log file located at /Users/mustaphaf/.config/nvim/.elixir-tools/next-ls.log
+
+16:07:01.211 [debug] sent notification server -> client window/logMessage
+
+16:07:01.211 [info] [extension] Credo initializing with options %NextLS.InitOpts.Extensions.Credo{enable: true, cli_options: []}
+
+16:07:01.211 id=72 [debug] sent request server -> client client/registerCapability
+
+16:07:02.120 [debug] handled notification client -> server textDocument/didClose in 6ms
+
+16:07:02.129 [debug] handled notification client -> server textDocument/didOpen in 172µs

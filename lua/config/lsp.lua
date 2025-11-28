@@ -184,6 +184,45 @@ vim.lsp.config("tailwindcss", {
   },
 })
 
+-- GitHub Copilot LSP
+vim.lsp.enable("copilot")
+vim.lsp.config("copilot", {
+  capabilities = capabilities,
+  filetypes = {
+    "javascript",
+    "javascriptreact", 
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+    "python",
+    "lua",
+    "go",
+    "rust",
+    "html",
+    "css",
+    "scss",
+    "json",
+    "markdown",
+    "vim",
+    "yaml",
+  },
+  settings = {
+    -- Copilot LSP settings
+    copilot = {
+      -- Enable inline suggestions (works alongside copilot.lua)
+      enable = true,
+    }
+  },
+  -- Custom initialization to work with copilot.lua
+  on_attach = function(client, bufnr)
+    -- Disable copilot LSP's completion to avoid conflicts with copilot.lua
+    client.server_capabilities.completionProvider = false
+  end,
+})
+
+
+
 -- Keymaps (set after LSP attaches)
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
