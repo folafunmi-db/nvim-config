@@ -71,9 +71,12 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert({
-          -- Tab completion (matching coc.nvim behavior)
+          -- Smart Tab completion that prioritizes Copilot
           ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
+            -- Check if Copilot suggestion is available first
+            if vim.fn["copilot#GetDisplayedSuggestion"]().text ~= "" then
+              vim.api.nvim_feedkeys(vim.fn["copilot#Accept"](), "i", true)
+            elseif cmp.visible() then
               cmp.select_next_item()
             else
               fallback()

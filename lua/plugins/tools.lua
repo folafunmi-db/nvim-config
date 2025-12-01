@@ -54,9 +54,10 @@ return {
 		"github/copilot.vim",
 		event = "InsertEnter",
 		config = function()
-			-- Disable default tab mapping to avoid conflicts
+			-- Disable default tab mapping to avoid conflicts with nvim-cmp
+			-- Tab handling is managed by nvim-cmp configuration
 			vim.g.copilot_no_tab_map = true
-			-- Set custom keymap
+			-- Keep Ctrl+J as backup for accepting suggestions
 			vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 		end,
 	},
