@@ -1,6 +1,20 @@
 -- LSP Configuration
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+-- Ensure Node.js from nvm is available for TypeScript language servers
+-- This is critical when using nvm since some shells don't export PATH to Neovim
+local function ensure_node_in_path()
+  local nvm_node_path = vim.fn.expand("~/.local/share/nvm/v22.22.0/bin")
+  if vim.fn.isdirectory(nvm_node_path) == 1 then
+    local current_path = vim.env.PATH or ""
+    if not string.find(current_path, nvm_node_path, 1, true) then
+      vim.env.PATH = nvm_node_path .. ":" .. current_path
+    end
+  end
+end
+
+ensure_node_in_path()
+
 -- Optimize LSP performance for large JSX files
 local function optimize_lsp_for_jsx()
   -- Reduce diagnostic update frequency
@@ -28,22 +42,25 @@ local basic_servers = {
   "cssls",
   "svelte",
   "astro",
+  -- Note: denols and ts_ls are configured separately to avoid conflicts
 }
 
 -- Setup basic servers
 for _, server in ipairs(basic_servers) do
-  vim.lsp.enable(server)
   vim.lsp.config(server, {
     capabilities = capabilities,
   })
+  vim.lsp.enable(server)
 end
 
 -- TypeScript/JavaScript configuration
-vim.lsp.enable("ts_ls")
 vim.lsp.config("ts_ls", {
   capabilities = capabilities,
-  priority = 10,  -- High priority for go-to-definition
-  root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+  cmd = {
+    "typescript-language-server",
+    "--stdio",
+  },
+  root_markers = { "tsconfig.json", "package.json", "jsconfig.json" },
   filetypes = {
     "javascript",
     "javascriptreact",
@@ -54,25 +71,19 @@ vim.lsp.config("ts_ls", {
   },
   init_options = {
     hostInfo = "neovim",
-    maxTsServerMemory = 4096,  -- Increase memory limit for large projects
-    locale = "en",
+    maxTsServerMemory = 4096,
     preferences = {
-      -- Enable auto-imports
       includeCompletionsForModuleExports = true,
       includeCompletionsWithSnippetText = true,
-      -- Auto-import suggestions
       includeAutomaticOptionalChainCompletions = true,
-      -- JSX preferences
       jsxAttributeCompletionStyle = "auto",
       allowTextChangesInNewFiles = true,
-      -- Performance optimizations
       disableSuggestions = false,
       quotePreference = "auto",
     },
   },
   settings = {
     typescript = {
-      -- Disable inlay hints for better performance in large JSX files
       inlayHints = {
         includeInlayParameterNameHints = "none",
         includeInlayFunctionParameterTypeHints = false,
@@ -80,7 +91,6 @@ vim.lsp.config("ts_ls", {
       },
     },
     javascript = {
-      -- Disable inlay hints for better performance in large JSX files
       inlayHints = {
         includeInlayParameterNameHints = "none",
         includeInlayFunctionParameterTypeHints = false,
@@ -100,12 +110,39 @@ vim.lsp.config("ts_ls", {
     }
   }
 })
+vim.lsp.enable("ts_ls")
+
+-- Deno configuration (only for Deno projects with deno.json)
+vim.lsp.config("denols", {
+  capabilities = capabilities,
+  root_markers = { "deno.json", "deno.jsonc" },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+  },
+  init_options = {
+    lint = true,
+    unstable = true,
+    suggest = {
+      imports = {
+        hosts = {
+          ["https://deno.land"] = true,
+          ["https://cdn.nest.land"] = true,
+          ["https://crux.land"] = true,
+        },
+      },
+    },
+  },
+})
+vim.lsp.enable("denols")
 
 -- Biome configuration
-vim.lsp.enable("biome")
 vim.lsp.config("biome", {
   capabilities = capabilities,
-  priority = 5,  -- Lower priority (formatting only)
   filetypes = {
     "javascript",
     "javascriptreact", 
@@ -116,27 +153,32 @@ vim.lsp.config("biome", {
     "json",
     "jsonc",
   },
-  on_attach = function(_, bufnr)
+  on_attach = function(client, bufnr)
+    -- Disable all capabilities except formatting
+    client.server_capabilities.hoverProvider = false
+    client.server_capabilities.completionProvider = false
+    client.server_capabilities.definitionProvider = false
+    client.server_capabilities.referencesProvider = false
+    client.server_capabilities.implementationProvider = false
+    
     -- Auto-format on save (async for better performance)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
       callback = function()
         -- Format document asynchronously
         vim.lsp.buf.format({ 
-          async = true,  -- Changed to async for better performance
+          async = true,
           filter = function(c)
             return c.name == "biome"
           end
         })
-        -- Skip auto-fix code actions on save to improve performance
-        -- Use <leader>bf for manual format + fix when needed
       end,
     })
   end,
 })
+vim.lsp.enable("biome")
 
 -- Emmet configuration for JSX/TSX support
-vim.lsp.enable("emmet_ls")
 vim.lsp.config("emmet_ls", {
   capabilities = capabilities,
   filetypes = {
@@ -149,9 +191,9 @@ vim.lsp.config("emmet_ls", {
     "typescriptreact",
   },
 })
+vim.lsp.enable("emmet_ls")
 
 -- JSON configuration with schema support
-vim.lsp.enable("jsonls")
 vim.lsp.config("jsonls", {
   capabilities = capabilities,
   settings = {
@@ -168,9 +210,9 @@ vim.lsp.config("jsonls", {
     },
   },
 })
+vim.lsp.enable("jsonls")
 
 -- Tailwind CSS configuration for React
-vim.lsp.enable("tailwindcss")
 vim.lsp.config("tailwindcss", {
   capabilities = capabilities,
   filetypes = {
@@ -183,14 +225,86 @@ vim.lsp.config("tailwindcss", {
     "typescriptreact",
   },
 })
+vim.lsp.enable("tailwindcss")
 
 
 
 
+
+-- Helper function: Check if any LSP client is attached to buffer
+local function has_lsp_attached(bufnr)
+  local clients = vim.lsp.get_clients({ bufnr = bufnr })
+  return #clients > 0
+end
+
+-- Helper function: Get names of attached LSP clients
+local function get_attached_lsp_names(bufnr)
+  local clients = vim.lsp.get_clients({ bufnr = bufnr })
+  local names = {}
+  for _, client in ipairs(clients) do
+    table.insert(names, client.name)
+  end
+  return names
+end
+
+-- Smart wrapper for LSP commands with user feedback
+local function smart_lsp_call(lsp_method, method_name)
+  return function()
+    -- Get current buffer when the keymap is executed
+    local bufnr = vim.api.nvim_get_current_buf()
+    
+    -- Check if LSP is attached
+    if not has_lsp_attached(bufnr) then
+      vim.notify(
+        string.format("No LSP attached to this buffer. LSP commands like '%s' require an active language server.", method_name),
+        vim.log.levels.WARN,
+        { title = "LSP Not Ready" }
+      )
+      return
+    end
+    
+    -- Check if the specific capability exists
+    local clients = vim.lsp.get_clients({ bufnr = bufnr })
+    local has_capability = false
+    
+    for _, client in ipairs(clients) do
+      -- Check method-specific capabilities
+      if method_name == "implementation" and client.supports_method("textDocument/implementation") then
+        has_capability = true
+        break
+      elseif method_name == "hover" and client.supports_method("textDocument/hover") then
+        has_capability = true
+        break
+      elseif client.server_capabilities then
+        has_capability = true  -- Assume capability for other methods
+        break
+      end
+    end
+    
+    if not has_capability then
+      local client_names = table.concat(get_attached_lsp_names(bufnr), ", ")
+      vim.notify(
+        string.format("LSP '%s' doesn't support '%s' for this file.", client_names, method_name),
+        vim.log.levels.INFO,
+        { title = "LSP Info" }
+      )
+      return
+    end
+    
+    -- Execute the LSP method
+    lsp_method()
+  end
+end
 
 -- Keymaps (set after LSP attaches)
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
+    -- Ignore Copilot (it's not a real LSP server)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client and (client.name == "copilot" or client.name == "GitHub Copilot") then
+      return
+    end
+    
     local opts = { buffer = ev.buf, silent = true }
     
     -- Navigation keymaps (matching your coc setup)
@@ -199,8 +313,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     
-    -- Hover documentation (using gk instead of K to avoid conflicts)
+    -- Hover documentation (multiple bindings for convenience)
     vim.keymap.set("n", "gk", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts)
     
     -- Code actions (matching your coc keymaps)
@@ -253,5 +368,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<leader>ih", function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
     end, { buffer = ev.buf, silent = true, desc = "Toggle inlay hints" })
+    
+    -- LSP info and diagnostics keybindings for troubleshooting
+    vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", 
+      { buffer = ev.buf, silent = true, desc = "LSP Info" })
+    vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>", 
+      { buffer = ev.buf, silent = true, desc = "LSP Restart" })
+    vim.keymap.set("n", "<leader>ls", function()
+      local clients = get_attached_lsp_names(ev.buf)
+      if #clients > 0 then
+        vim.notify(
+          "Attached LSP servers: " .. table.concat(clients, ", "),
+          vim.log.levels.INFO,
+          { title = "LSP Status" }
+        )
+      else
+        vim.notify("No LSP servers attached", vim.log.levels.WARN, { title = "LSP Status" })
+      end
+    end, { buffer = ev.buf, silent = true, desc = "Show LSP status" })
   end,
 })

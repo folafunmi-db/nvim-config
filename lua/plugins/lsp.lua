@@ -1,8 +1,8 @@
 return {
-  -- LSP Configuration (loads only when opening files)
+  -- LSP Configuration (loads when opening files - BufReadPre for faster attachment)
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPost", "BufNewFile" },  -- Changed to BufReadPost for faster startup
+    event = { "BufReadPre", "BufNewFile" },  -- BufReadPre ensures LSP loads before buffer is fully read
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
