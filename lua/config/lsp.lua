@@ -1,14 +1,13 @@
 -- LSP Configuration
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- Ensure Node.js from nvm is available for TypeScript language servers
--- This is critical when using nvm since some shells don't export PATH to Neovim
+-- Ensure Node.js from Homebrew is available for TypeScript language servers
 local function ensure_node_in_path()
-  local nvm_node_path = vim.fn.expand("~/.local/share/nvm/v22.22.0/bin")
-  if vim.fn.isdirectory(nvm_node_path) == 1 then
+  local homebrew_node_path = "/opt/homebrew/bin"
+  if vim.fn.isdirectory(homebrew_node_path) == 1 then
     local current_path = vim.env.PATH or ""
-    if not string.find(current_path, nvm_node_path, 1, true) then
-      vim.env.PATH = nvm_node_path .. ":" .. current_path
+    if not string.find(current_path, homebrew_node_path, 1, true) then
+      vim.env.PATH = homebrew_node_path .. ":" .. current_path
     end
   end
 end
