@@ -103,10 +103,15 @@ return {
 
 	-- OpenCode integration
 	{
-		"NickvanDyke/opencode.nvim",
-		keys = {
-			{ "<leader>8t", "<cmd>lua require('opencode').toggle()<cr>", desc = "Toggle OpenCode" },
-			{ "<leader>8a", "<cmd>lua require('opencode').ask()<cr>",    desc = "Ask OpenCode" },
+		"sudo-tee/opencode.nvim",
+		lazy = false,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
 		},
+		config = function()
+			require("opencode").setup({
+				keymap_prefix = "<leader>8",
+			})
+		end,
 	},
 }
