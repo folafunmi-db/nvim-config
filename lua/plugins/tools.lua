@@ -111,6 +111,9 @@ return {
 		config = function()
 			require("opencode").setup({
 				keymap_prefix = "<leader>8",
+				ui = {
+					window_width = 0.50,
+				}
 			})
 		end,
 	},

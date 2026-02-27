@@ -149,20 +149,8 @@ vim.lsp.config("biome", {
     client.server_capabilities.definitionProvider = false
     client.server_capabilities.referencesProvider = false
     client.server_capabilities.implementationProvider = false
-    
-    -- Auto-format on save (async for better performance)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      callback = function()
-        -- Format document asynchronously
-        vim.lsp.buf.format({ 
-          async = true,
-          filter = function(c)
-            return c.name == "biome"
-          end
-        })
-      end,
-    })
+    -- NOTE: Format-on-save is handled by conform.nvim (plugins/tools.lua).
+    -- Do NOT add a BufWritePre autocmd here to avoid race conditions.
   end,
 })
 vim.lsp.enable("biome")
