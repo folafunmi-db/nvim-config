@@ -26,12 +26,11 @@ optimize_lsp_for_jsx()
 local basic_servers = {
   "gopls",
   "rust_analyzer", 
-  "elixirls",
   "html",
   "cssls",
   "svelte",
   "astro",
-  -- Note: denols and ts_ls are configured separately to avoid conflicts
+  -- Note: denols, ts_ls, and elixirls are configured separately to avoid conflicts
 }
 
 -- Setup basic servers
@@ -154,6 +153,13 @@ vim.lsp.config("biome", {
   end,
 })
 vim.lsp.enable("biome")
+
+-- Elixir configuration (only for Elixir files)
+vim.lsp.config("elixirls", {
+  capabilities = capabilities,
+  filetypes = { "elixir", "eex", "heex", "surface" },
+})
+vim.lsp.enable("elixirls")
 
 -- Emmet configuration for JSX/TSX support
 vim.lsp.config("emmet_ls", {
