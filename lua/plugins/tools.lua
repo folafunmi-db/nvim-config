@@ -71,7 +71,7 @@ return {
 			format_on_save = function(bufnr)
 				-- disable LSP format to prevent conflicts if you want Biome to be the sole formatter
 				local lsp_format_opt = "never"
-				return { timeout_ms = 500, lsp_format = lsp_format_opt }
+				return { timeout_ms = 2000, lsp_format = lsp_format_opt }
 			end,
 			formatters_by_ft = {
 				-- Set Biome as the formatter for tsx, ts, jsx, js, etc.
