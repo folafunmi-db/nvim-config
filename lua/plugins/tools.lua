@@ -47,6 +47,19 @@ return {
 	{
 		"christoomey/vim-tmux-navigator",
 		lazy = false, -- Load immediately to ensure tmux navigation works
+		config = function()
+			-- This plugin unconditionally maps <C-h>/<C-j>/<C-k>/<C-l> to tmux navigation.
+			-- Re-map <C-j>/<C-k> for line movement (defined in keymaps.lua) and
+			-- remove <C-h>/<C-l> entirely.
+			vim.keymap.set("n", "<C-j>", ":m .+1<CR>==", { silent = true, desc = "Move line down" })
+			vim.keymap.set("n", "<C-k>", ":m .-2<CR>==", { silent = true, desc = "Move line up" })
+			vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
+			vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selection up" })
+			vim.keymap.del("n", "<C-h>")
+			vim.keymap.del("n", "<C-l>")
+			vim.keymap.del("t", "<C-h>")
+			vim.keymap.del("t", "<C-l>")
+		end,
 	},
 
 	-- Copilot LSP for true LSP functionality
@@ -84,6 +97,7 @@ return {
 				javascript = { "biome" },
 				js = { "biome" },
 				json = { "biome" },
+				python = { "isort", "black" },
 				-- You can also use a fallback for other filetypes
 				-- ["_"] = { "biome" },
 			},

@@ -39,6 +39,7 @@ return {
           "biome",       -- Biome (replaces ESLint)
           "jsonls",      -- JSON
           "emmet_ls",    -- Emmet
+          "basedpyright", -- Python
         },
         automatic_installation = true,
       })

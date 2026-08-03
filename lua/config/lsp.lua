@@ -31,6 +31,7 @@ local basic_servers = {
   "cssls",
   "svelte",
   "astro",
+  "basedpyright",
   -- Note: denols and ts_ls are configured separately to avoid conflicts
 }
 

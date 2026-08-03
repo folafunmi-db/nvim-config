@@ -51,6 +51,12 @@ keymap("n", "<S-k>", ":m .-2<CR>==", { silent = true, desc = "Move line up" })
 keymap("v", "<S-j>", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
 keymap("v", "<S-k>", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selection up" })
 
+-- Move lines up and down with Ctrl+j/k (tmux-navigator mappings for these are disabled)
+keymap("n", "<C-j>", ":m .+1<CR>==", { silent = true, desc = "Move line down" })
+keymap("n", "<C-k>", ":m .-2<CR>==", { silent = true, desc = "Move line up" })
+keymap("v", "<C-j>", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
+keymap("v", "<C-k>", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selection up" })
+
 -- Alternative line movement for terminals that don't handle Shift properly
 keymap("n", "<leader>j", ":m .+1<CR>==", { silent = true, desc = "Move line down" })
 keymap("n", "<leader>k", ":m .-2<CR>==", { silent = true, desc = "Move line up" })
