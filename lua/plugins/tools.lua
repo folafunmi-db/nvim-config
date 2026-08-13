@@ -125,6 +125,12 @@ return {
 		config = function()
 			require("opencode").setup({
 				keymap_prefix = "<leader>8",
+				keymap = {
+					editor = {
+						["<leader>oa"] = { "toggle_focus", desc = "Toggle focus" },
+						["<leader>ot"] = false,
+					},
+				},
 				ui = {
 					window_width = 0.50,
 				}
