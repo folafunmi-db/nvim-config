@@ -10,12 +10,12 @@ return {
     },
     config = function()
       require("nvim-treesitter").setup({
+        ensure_installed = {
+          "lua", "javascript", "typescript", "tsx",
+          "html", "css", "json", "go", "rust",
+          "elixir", "python", "kotlin",
+        },
         install_dir = vim.fn.stdpath("data") .. "/site",
-      })
-      require("nvim-treesitter").install({
-        "lua", "javascript", "typescript", "tsx",
-        "html", "css", "json", "go", "rust",
-        "elixir", "python", "kotlin",
       })
 
       -- Treesitter context
