@@ -32,7 +32,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "ts_ls",       -- TypeScript/JavaScript
+          "vtsls",       -- TypeScript/JavaScript (faster than ts_ls)
           "html",        -- HTML
           "cssls",       -- CSS
           "tailwindcss", -- Tailwind CSS

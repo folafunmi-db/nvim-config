@@ -31,7 +31,7 @@ local basic_servers = {
   "svelte",
   "astro",
   "basedpyright",
-  -- Note: denols and ts_ls are configured separately to avoid conflicts
+  -- Note: denols and vtsls are configured separately to avoid conflicts
 }
 
 -- Setup basic servers
@@ -42,13 +42,10 @@ for _, server in ipairs(basic_servers) do
   vim.lsp.enable(server)
 end
 
--- TypeScript/JavaScript configuration
-vim.lsp.config("ts_ls", {
+-- TypeScript/JavaScript configuration (vtsls - faster alternative to ts_ls)
+vim.lsp.config("vtsls", {
   capabilities = capabilities,
-  cmd = {
-    "typescript-language-server",
-    "--stdio",
-  },
+  cmd = { "vtsls", "--stdio" },
   root_markers = { "tsconfig.json", "package.json", "jsconfig.json" },
   filetypes = {
     "javascript",
@@ -58,25 +55,27 @@ vim.lsp.config("ts_ls", {
     "typescriptreact",
     "typescript.tsx",
   },
-  init_options = {
-    hostInfo = "neovim",
-    maxTsServerMemory = 4096,
-    preferences = {
-      includeCompletionsForModuleExports = true,
-      includeCompletionsWithSnippetText = true,
-      includeAutomaticOptionalChainCompletions = true,
-      jsxAttributeCompletionStyle = "auto",
-      allowTextChangesInNewFiles = true,
-      disableSuggestions = false,
-      quotePreference = "auto",
-    },
-  },
   settings = {
+    vtsls = {
+      tsserver = {
+        maxTsServerMemory = 4096,
+      },
+      enableMoveTsserverImportsFromExternalModules = true,
+    },
     typescript = {
       inlayHints = {
         includeInlayParameterNameHints = "none",
         includeInlayFunctionParameterTypeHints = false,
         includeInlayVariableTypeHints = false,
+      },
+      preferences = {
+        includeCompletionsForModuleExports = true,
+        includeCompletionsWithSnippetText = true,
+        includeAutomaticOptionalChainCompletions = true,
+        jsxAttributeCompletionStyle = "auto",
+        allowTextChangesInNewFiles = true,
+        disableSuggestions = false,
+        quotePreference = "auto",
       },
     },
     javascript = {
@@ -99,7 +98,7 @@ vim.lsp.config("ts_ls", {
     }
   }
 })
-vim.lsp.enable("ts_ls")
+vim.lsp.enable("vtsls")
 
 -- Deno configuration (only for Deno projects with deno.json)
 vim.lsp.config("denols", {
@@ -292,10 +291,61 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local opts = { buffer = ev.buf, silent = true }
     
     -- Navigation keymaps (matching your coc setup)
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "gj", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n", "gd", function()
+      vim.lsp.buf.definition()
+    end, opts)
+    vim.keymap.set("n", "gj", function()
+      vim.lsp.buf.definition()
+    end, opts)
+    vim.keymap.set("n", "gy", function()
+      vim.lsp.buf.type_definition()
+    end, opts)
+    vim.keymap.set("n", "gi", function()
+      vim.lsp.buf.implementation({
+        on_list = function(locations)
+          if #locations == 0 then
+            vim.notify("No implementations found", vim.log.levels.INFO)
+            return
+          end
+          if #locations == 1 then
+            local loc = locations[1]
+            vim.cmd("edit " .. vim.fn.fnameescape(loc.filename))
+            vim.api.nvim_win_set_cursor(0, { loc.lnum, (loc.col or 1) - 1 })
+            return
+          end
+          local lines = {}
+          for i, loc in ipairs(locations) do
+            local text = string.format("%s:%d", loc.filename, loc.lnum)
+            table.insert(lines, string.format("[%d] %s", i, text))
+          end
+          local float_buf = vim.api.nvim_create_buf(false, true)
+          vim.api.nvim_buf_set_lines(float_buf, 0, -1, false, lines)
+          vim.api.nvim_buf_set_option(float_buf, "modifiable", false)
+          local width = 0
+          for _, l in ipairs(lines) do width = math.max(width, #l) end
+          width = math.min(width + 4, 80)
+          local win = vim.api.nvim_open_win(float_buf, true, {
+            relative = "cursor",
+            width = width,
+            height = #lines,
+            style = "minimal",
+            border = "rounded",
+          })
+          vim.keymap.set("n", "<CR>", function()
+            local row = vim.api.nvim_win_get_cursor(0)[1]
+            local loc = locations[row]
+            if loc then
+              vim.api.nvim_win_close(win, true)
+              vim.cmd("edit " .. vim.fn.fnameescape(loc.filename))
+              vim.api.nvim_win_set_cursor(0, { loc.lnum, (loc.col or 1) - 1 })
+            end
+          end, { buffer = float_buf })
+          vim.keymap.set("n", "q", function()
+            vim.api.nvim_win_close(win, true)
+          end, { buffer = float_buf })
+        end,
+      })
+    end, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     
     -- Hover documentation (gk and <leader>h; K is reserved for line movement)
