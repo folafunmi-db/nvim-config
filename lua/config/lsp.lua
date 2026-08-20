@@ -298,9 +298,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     
-    -- Hover documentation (multiple bindings for convenience)
+    -- Hover documentation (gk and <leader>h; K is reserved for line movement)
     vim.keymap.set("n", "gk", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts)
     
     -- Code actions (matching your coc keymaps)

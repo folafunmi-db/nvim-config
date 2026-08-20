@@ -1,8 +1,11 @@
 -- Core keymaps that load immediately
 local keymap = vim.keymap.set
 
--- NOTE: Window navigation (Ctrl+h/j/k/l) is handled by tmux-navigator plugin
--- Alternative window navigation for when tmux-navigator is not available
+-- Window navigation (Ctrl+h/j/k/l)
+keymap("n", "<C-h>", "<C-w>h", { silent = true, desc = "Move to left window" })
+keymap("n", "<C-j>", "<C-w>j", { silent = true, desc = "Move to bottom window" })
+keymap("n", "<C-k>", "<C-w>k", { silent = true, desc = "Move to top window" })
+keymap("n", "<C-l>", "<C-w>l", { silent = true, desc = "Move to right window" })
 keymap("n", "<M-h>", "<C-w>h", { silent = true, desc = "Move to left window (Alt)" })
 keymap("n", "<M-j>", "<C-w>j", { silent = true, desc = "Move to bottom window (Alt)" })
 keymap("n", "<M-k>", "<C-w>k", { silent = true, desc = "Move to top window (Alt)" })
@@ -45,22 +48,10 @@ keymap("c", "<C-[>", "<C-C>")
 -- Undo mapping
 keymap("n", "<C-z>", "u")
 
--- Move lines up and down (using Shift+j/k to avoid conflicts with LSP hover)
-keymap("n", "<S-j>", ":m .+1<CR>==", { silent = true, desc = "Move line down" })
-keymap("n", "<S-k>", ":m .-2<CR>==", { silent = true, desc = "Move line up" })
-keymap("v", "<S-j>", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
-keymap("v", "<S-k>", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selection up" })
-
--- Move lines up and down with Ctrl+j/k (tmux-navigator mappings for these are disabled)
-keymap("n", "<C-j>", ":m .+1<CR>==", { silent = true, desc = "Move line down" })
-keymap("n", "<C-k>", ":m .-2<CR>==", { silent = true, desc = "Move line up" })
-keymap("v", "<C-j>", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
-keymap("v", "<C-k>", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selection up" })
-
--- Alternative line movement for terminals that don't handle Shift properly
-keymap("n", "<leader>j", ":m .+1<CR>==", { silent = true, desc = "Move line down" })
-keymap("n", "<leader>k", ":m .-2<CR>==", { silent = true, desc = "Move line up" })
-keymap("v", "<leader>j", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
-keymap("v", "<leader>k", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selection up" })
+-- Move lines up and down
+keymap("n", "J", "<cmd>m .+1<cr>==", { silent = true, desc = "Move line down" })
+keymap("n", "K", "<cmd>m .-2<cr>==", { silent = true, desc = "Move line up" })
+keymap("v", "J", ":m '>+1<cr>gv=gv", { silent = true, desc = "Move selection down" })
+keymap("v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "Move selection up" })
 
 -- Jump list navigation (using default <C-o> instead of leader mapping)
