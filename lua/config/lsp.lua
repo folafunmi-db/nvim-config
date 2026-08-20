@@ -7,7 +7,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- Optimize LSP performance for large JSX files
 local function optimize_lsp_for_jsx()
   -- Reduce diagnostic update frequency
-  vim.lsp.set_log_level("WARN")
+  vim.lsp.log.set_level(vim.lsp.log.levels.WARN)
   
   -- Configure diagnostic options for better performance
   vim.diagnostic.config({
