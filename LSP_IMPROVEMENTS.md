@@ -3,10 +3,10 @@
 ## Recent Changes (January 22, 2026)
 
 ### 1. Fixed Deno/TypeScript Conflict
-- **Issue**: Both `denols` and `ts_ls` were attaching to the same files, causing conflicts
+- **Issue**: Both `denols` and `vtsls` were attaching to the same files, causing conflicts
 - **Fix**: Added proper root directory detection:
   - `denols` only attaches when `deno.json` or `deno.jsonc` is present
-  - `ts_ls` attaches to regular TypeScript/JavaScript projects with `tsconfig.json` or `package.json`
+  - `vtsls` attaches to regular TypeScript/JavaScript projects with `tsconfig.json` or `package.json`
 - **Impact**: No more duplicate LSP servers on the same buffer
 
 ### 2. Removed Debug Messages
@@ -42,14 +42,25 @@
 The following LSP servers are configured and auto-attach based on file type:
 
 ### TypeScript/JavaScript Projects
-- **`ts_ls`** - TypeScript/JavaScript language server (hover, completion, navigation)
+- **`vtsls`** - TypeScript/JavaScript language server (hover, completion, navigation)
   - Attaches when: `tsconfig.json`, `package.json`, or `jsconfig.json` is found
   - Does NOT attach in Deno projects
+  - Note: `ts_ls` (typescript-language-server) was removed entirely — `vtsls` is its drop-in replacement
 
 ### Deno Projects  
 - **`denols`** - Deno language server
   - Attaches when: `deno.json` or `deno.jsonc` is found
   - Does NOT attach in regular Node.js projects
+
+### UI/Styling
+- **`tailwindcss`** - Tailwind CSS IntelliSense (hover currently disabled)
+- **`cssmodules_ls`** - CSS Modules support (hover enabled)
+- **`emmet_ls`** - Emmet abbreviation expansion
+- **`htmx`** - HTMX attribute completion
+
+> Note: `cssmodules_ls` and `htmx` are no longer auto-attaching — they were
+> enabled by mason-lspconfig's `automatic_enable` (v2 default), which is now
+> disabled (`lua/plugins/lsp.lua`). Only explicitly configured servers attach.
 
 ### Formatting & Linting
 - **`biome`** - Fast formatter and linter (formatting only, other capabilities disabled)
@@ -58,7 +69,6 @@ The following LSP servers are configured and auto-attach based on file type:
     - `<leader>ff` - Format document
     - `<leader>fa` - Format and fix all issues
 
-### UI/Styling
 - **`tailwindcss`** - Tailwind CSS IntelliSense (hover currently disabled)
 - **`cssmodules_ls`** - CSS Modules support (hover enabled)
 - **`emmet_ls`** - Emmet abbreviation expansion
@@ -79,7 +89,7 @@ The following LSP servers are configured and auto-attach based on file type:
 ### Navigation
 - `gd` - Go to definition
 - `gi` - Go to implementation
-- `gk` / `K` / `<leader>h` - Show hover documentation
+- `gk` / `<leader>h` - Show hover documentation (K is reserved for line movement)
 - `gy` - Go to type definition
 - `gr` - Show references
 - `[g` / `]g` - Navigate diagnostics (previous/next)
@@ -110,7 +120,7 @@ The following LSP servers are configured and auto-attach based on file type:
 
 ### Deno vs Node.js Detection
 - Projects with **`deno.json`**: Only `denols` attaches
-- Projects with **`tsconfig.json`** or **`package.json`**: Only `ts_ls` attaches  
+- Projects with **`tsconfig.json`** or **`package.json`**: Only `vtsls` attaches  
 - If both exist: `denols` takes precedence (Deno project)
 - To force TypeScript: Remove `deno.json` or create `tsconfig.json`
 
@@ -130,7 +140,7 @@ All LSP configuration is in:
 
 ### Common Issues
 
-**"ts_ls and denols both attaching"**
+**"vtsls and denols both attaching"**
 - Check for both `deno.json` and `tsconfig.json` in your project
 - Remove `deno.json` if this is a Node.js project
 - Or remove `tsconfig.json` if this is a Deno project

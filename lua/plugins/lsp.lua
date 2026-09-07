@@ -41,7 +41,7 @@ return {
           "emmet_ls",    -- Emmet
           "basedpyright", -- Python
         },
-        automatic_installation = true,
+        automatic_enable = false,
       })
     end,
   },

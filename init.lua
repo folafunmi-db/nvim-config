@@ -19,6 +19,16 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Preload a patched nvim-treesitter query_predicates (nvim 0.12 node-list fix).
+-- Shadowing it here (before lazy loads the plugin) means the fix survives
+-- plugin updates and works on any machine that clones this config.
+local override_dir = vim.fn.stdpath("config") .. "/lua/override"
+if vim.fn.filereadable(override_dir .. "/nvim-treesitter/query_predicates.lua") == 1 then
+	package.path = override_dir .. "/?.lua;" .. override_dir .. "/?/init.lua;" .. package.path
+	vim.opt.rtp:prepend(override_dir)
+	pcall(require, "nvim-treesitter.query_predicates")
+end
+
 -- Load core options first (no plugins needed)
 require("config.options")
 require("config.keymaps")
