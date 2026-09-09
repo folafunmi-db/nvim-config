@@ -19,14 +19,33 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Preload a patched nvim-treesitter query_predicates (nvim 0.12 node-list fix).
--- Shadowing it here (before lazy loads the plugin) means the fix survives
--- plugin updates and works on any machine that clones this config.
+-- Load in-repo overrides for archived/obsolete plugin bits so the fixes
+-- survive plugin updates and work on any machine that clones this config.
 local override_dir = vim.fn.stdpath("config") .. "/lua/override"
-if vim.fn.filereadable(override_dir .. "/nvim-treesitter/query_predicates.lua") == 1 then
+if vim.fn.isdirectory(override_dir) == 1 then
 	package.path = override_dir .. "/?.lua;" .. override_dir .. "/?/init.lua;" .. package.path
 	vim.opt.rtp:prepend(override_dir)
+
+	-- Shadow nvim-treesitter's query_predicates with a patched copy that
+	-- handles nvim 0.12's node-list match capture (hover crash fix).
 	pcall(require, "nvim-treesitter.query_predicates")
+
+	-- nvim-treesitter (archived) bundles a stale lua grammar + queries that
+	-- trip nvim 0.12's strict query validation ("Invalid field name 'operator'").
+	-- Drop them, let nvim core's lua queries win, and register a modern grammar
+	-- (built from tree-sitter-grammars/tree-sitter-lua) shipped in this repo.
+	local nvt = vim.fn.stdpath("data") .. "/lazy/nvim-treesitter"
+	if vim.fn.isdirectory(nvt .. "/runtime/queries/lua") == 1 then
+		vim.fn.delete(nvt .. "/runtime/queries/lua", "rf")
+	end
+	if vim.fn.filereadable(nvt .. "/parser/lua.so") == 1 then
+		vim.fn.delete(nvt .. "/parser/lua.so")
+	end
+
+	local modern_lua = override_dir .. "/parser/lua.so"
+	if vim.fn.filereadable(modern_lua) == 1 then
+		vim.treesitter.language.add("lua", modern_lua)
+	end
 end
 
 -- Load core options first (no plugins needed)
